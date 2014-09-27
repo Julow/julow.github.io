@@ -12,11 +12,12 @@ html
 }
 body
 {
-	overflow-y:scroll;
 	margin:0;
 	height:100%;
+	min-width:450px;
 	background:#e9e9e9;
 	font-family:Arial, sans-serif;
+	font-size:16px;
 }
 a, a:visited
 {
@@ -38,10 +39,9 @@ p
 }
 #left-part
 {
-	width:33%;
+	width:30%;
 	background:#606459;
 	text-align:right;
-	transition:width 0.5s ease;
 }
 	#title-layout
 	{
@@ -78,10 +78,17 @@ p
 	{
 		margin:10px 4% 10px 0;
 		text-shadow:0 0 1px rgba(0, 0, 0, 0.15);
+		color:#e9e9e9;
+	}
+	#left-part h3
+	{
+		margin:25px 4% 5px 0;
+		font-size:18px;
+		color:#f9f9f9;
 	}
 	.menu
 	{
-		margin:40px 4% 0 0;
+		margin:10px 4% 30px 0;
 		padding:0;
 		list-style-type:none;
 	}
@@ -91,7 +98,7 @@ p
 		}
 #right-part
 {
-	width:67%;
+	width:70%;
 	text-shadow:0 0 1px #fefefe;
 	color:#0A0A0A;
 }
@@ -99,12 +106,8 @@ p
 	{
 		position:absolute;
 	}
-	#header
-	{
-		margin:120px 0 0 6%;
-	}
 	.page
 	{
 		display:none;
-		margin:70px 0 0 6%;
+		margin:180px 0 0 6%;
 	}
