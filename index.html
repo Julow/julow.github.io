@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Juloooooooooooooo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+html
+{
+	height:100%;
+}
+body
+{
+	margin:0;
+	height:100%;
+}
+.part
+{
+	float:left;
+	height:100%;
+	display:inline-block;
+}
+.left
+{
+	width:33%;
+	background:#606459;
+	text-align:right;
+}
+.right
+{
+	width:67%;
+	background:#E9E9E9;
+}
+#title
+{
+	position:absolute;
+	width:100%;
+	text-align:center;
+	font-size:64px;
+}
+
+	</style>
+</head>
+<body>
+	<h1 id="title">My name is</h1>
+	<div class="part left">
+	</div>
+	<div class="part right">
+	<canvas id="separation" width="10px" height="100%"></canvas>
+	</div>
+	<script type="text/javascript">
+var oIndex = 0;
+setInterval(function()
+{
+	var juloooooooo = "JUL";
+	for (var i = 0; i < 10; ++i)
+	{
+		if (i == oIndex)
+		{
+			juloooooooo += "<span style=\"color:hsl(";
+			juloooooooo += ((Math.random() * 360) | 0) + ", ";
+			juloooooooo += ((Math.random() * 70 + 30) | 0) + "%, ";
+			juloooooooo += ((Math.random() * 30 + 30) | 0) + "%";
+			juloooooooo += ");\">O</span>";
+		}
+		else
+			juloooooooo += "O";
+	}
+	document.getElementById("title").innerHTML = juloooooooo;
+	++oIndex;
+	if (oIndex >= 10)
+		oIndex = 0;
+}, 300);
+function SeparationCanvas(canvas)
+{
+	this.canvas = canvas;
+	this.context = canvas.getContext('2d');
+
+	this.rightColor = "#E9E9E9";
+	this.leftColor = "#606459";
+
+	this.x = canvas.width / 2;
+
+	this.newHeight = 0;
+
+	this.checkSize();
+}
+SeparationCanvas.prototype.checkSize = function()
+{
+	this.newHeight = document.body.offsetHeight;
+};
+SeparationCanvas.prototype.render = function()
+{
+	if (this.newHeight != 0)
+	{
+		this.canvas.height = this.newHeight;
+		this.newHeight = 0;
+	}
+	this.context.fillStyle = this.rightColor;
+	this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+	this.context.fillStyle = this.leftColor;
+	this.context.beginPath();
+	this.context.moveTo(this.x, 0);
+	var y = 0;
+	for (; y < this.canvas.height; y += 9)
+		this.context.lineTo(Math.random() * 8 - 4 + this.x, y);
+	this.context.lineTo(0, y);
+	this.context.lineTo(0, 0);
+	this.context.lineTo(this.x, 0);
+	this.context.fill();
+};
+var separation = new SeparationCanvas(document.getElementById("separation"));
+setInterval(function()
+{
+	separation.render();
+}, 200);
+window.addEventListener("resize", function()
+{
+	separation.checkSize();
+}, false);
+	</script>
+</body>
+</html>
