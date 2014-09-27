@@ -1,3 +1,11 @@
+::selection
+{
+	text-shadow:none;
+}
+::-moz-selection
+{
+	text-shadow:none;
+}
 html
 {
 	height:100%;
@@ -84,7 +92,7 @@ p
 #right-part
 {
 	width:67%;
-	text-shadow:1px 1px 0 rgba(0, 0, 0, 0.1);
+	text-shadow:0 0 1px #fefefe;
 	color:#0A0A0A;
 }
 	#separation
@@ -94,10 +102,6 @@ p
 	#header
 	{
 		margin:120px 0 0 6%;
-	}
-	#right-part a
-	{
-		text-shadow:none;
 	}
 	.page
 	{

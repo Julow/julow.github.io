@@ -48,6 +48,15 @@ setInterval(function()
 }, 200);
 
 
+function repl(str, map)
+{
+	return str.replace(/\{\{([^\}]+)\}\}/g, function(match, p1)
+	{
+		return map[p1] || match;
+	});
+}
+
+
 var pageMap = {
 	"#blabla-0": {"html": document.getElementById("page-0"), "color": "#03d6dd"},
 	"#blabla-1": {"html": document.getElementById("page-1"), "color": "#f58319"},
@@ -55,6 +64,10 @@ var pageMap = {
 var style = document.createElement("style");
 document.getElementsByTagName("head")[0].appendChild(style);
 var currPage = null;
+var innerStyle = "::selection{background:{{color}};}" +
+	"::-moz-selection{background:{{color}};}" +
+	"#left-part{background-color:{{color}};}" +
+	"#right-part a{color:{{color}};}";
 showPage = function(pageName)
 {
 	var page = pageMap[pageName];
@@ -67,9 +80,8 @@ showPage = function(pageName)
 	currPage = page;
 	page.html.style.display = "block";
 	separation.leftColor = page.color;
+	style.innerHTML = repl(innerStyle, {"color": page.color});
 	separation.render();
-	document.getElementById("left-part").style.backgroundColor = page.color;
-	style.innerHTML = "#right-part a{color:" + page.color + ";}"
 }
 if (pageMap[window.location.hash])
 	showPage(window.location.hash);
