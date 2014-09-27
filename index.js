@@ -9,22 +9,17 @@ function SeparationCanvas(canvas)
 
 	this.x = canvas.width / 2;
 
-	this.newHeight = 0;
-
 	this.checkSize();
 }
 SeparationCanvas.prototype.checkSize = function()
 {
+	this.canvas.height = 0;
 	var e = document.documentElement;
-	this.newHeight = Math.max(e.clientHeight, e.scrollHeight);
+	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
+	this.render();
 };
 SeparationCanvas.prototype.render = function()
 {
-	if (this.newHeight != 0)
-	{
-		this.canvas.height = this.newHeight;
-		this.newHeight = 0;
-	}
 	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	this.context.fillStyle = this.leftColor;
 	this.context.beginPath();
