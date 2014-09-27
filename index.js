@@ -5,7 +5,6 @@ function SeparationCanvas(canvas)
 	this.canvas = canvas;
 	this.context = canvas.getContext('2d');
 
-	this.rightColor = "#e9e9e9";
 	this.leftColor = "#606459";
 
 	this.x = canvas.width / 2;
@@ -26,8 +25,7 @@ SeparationCanvas.prototype.render = function()
 		this.canvas.height = this.newHeight;
 		this.newHeight = 0;
 	}
-	this.context.fillStyle = this.rightColor;
-	this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	this.context.fillStyle = this.leftColor;
 	this.context.beginPath();
 	this.context.moveTo(this.x, 0);
@@ -71,7 +69,7 @@ var currPage = null;
 var innerStyle = "::selection{background:{{color}};}" +
 	"::-moz-selection{background:{{color}};}" +
 	"#left-part{background-color:{{color}};}" +
-	"#right-part a{color:{{color}};}";
+	"#right-part a,.title-right{color:{{color}};}";
 function showPage(pageName)
 {
 	var page = pageMap[pageName];
