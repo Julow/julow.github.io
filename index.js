@@ -1,5 +1,60 @@
 (function(){
 
+function SeparationCanvas(canvas)
+{
+	this.canvas = canvas;
+	this.context = canvas.getContext('2d');
+
+	this.color = "#606459";
+
+	this.x = canvas.width / 2;
+	this.offsetY = 9;
+	this.pointsX = [];
+
+	this.lastHeight = 0;
+
+	this.checkSize();
+}
+SeparationCanvas.prototype.checkSize = function()
+{
+	var e = document.documentElement;
+	var height = Math.max(e.clientHeight, e.scrollHeight);
+	if (height == this.lastHeight)
+		return;
+	this.lastHeight = height;
+	this.canvas.height = 0;
+	this.canvas.height = height;
+	this.render();
+};
+SeparationCanvas.prototype.regen = function()
+{
+	this.pointsX = [];
+	for (var y = 0; y < this.canvas.height; y += this.offsetY)
+		this.pointsX.push((((Math.random() * 8 - 4 + this.x) * 100) | 0) / 100);
+};
+SeparationCanvas.prototype.render = function()
+{
+	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+	this.context.fillStyle = this.color;
+	this.context.beginPath();
+	this.context.moveTo(this.x, 0);
+	for (var i = 0, y, diff; i < this.pointsX.length; ++i)
+		this.context.lineTo(this.pointsX[i], i * this.offsetY);
+	this.context.lineTo(0, this.canvas.height);
+	this.context.lineTo(0, 0);
+	this.context.lineTo(this.x, 0);
+	this.context.fill();
+};
+
+var separation = new SeparationCanvas(document.getElementById("separation"));
+(function updateLoop()
+{
+	setTimeout(updateLoop, 200);
+	separation.regen();
+	separation.render();
+})();
+
+
 function repl(str, map)
 {
 	return str.replace(/\{\{([^\}]+)\}\}/g, function(match, p1)
@@ -55,6 +110,8 @@ function showPage(pageName)
 	currPage = page;
 	page.show();
 	style.innerHTML = repl(innerStyle, {"color": page.color});
+	separation.color = page.color;
+	separation.render();
 }
 if (pageMap[window.location.hash])
 	showPage(window.location.hash);
@@ -70,57 +127,5 @@ window.addEventListener("resize", function()
 {
 	separation.checkSize();
 }, false);
-
-
-function SeparationCanvas(canvas)
-{
-	this.canvas = canvas;
-	this.context = canvas.getContext('2d');
-
-	this.x = canvas.width / 2;
-	this.offsetY = 9;
-	this.pointsX = [];
-
-	this.checkSize();
-}
-SeparationCanvas.prototype.checkSize = function()
-{
-	this.canvas.height = 0;
-	var e = document.documentElement;
-	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
-};
-SeparationCanvas.prototype.regen = function()
-{
-	this.pointsX = [];
-	for (var y = 0; y < this.canvas.height; y += this.offsetY)
-		this.pointsX.push((((Math.random() * 8 - 4 + this.x) * 100) | 0) / 100);
-};
-SeparationCanvas.prototype.render = function()
-{
-	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	this.context.fillStyle = currPage.color;
-	this.context.beginPath();
-	this.context.moveTo(this.x, 0);
-	for (var i = 0, y, diff; i < this.pointsX.length; ++i)
-		this.context.lineTo(this.pointsX[i], i * this.offsetY);
-	this.context.lineTo(0, this.canvas.height);
-	this.context.lineTo(0, 0);
-	this.context.lineTo(this.x, 0);
-	this.context.fill();
-};
-
-
-var separation = new SeparationCanvas(document.getElementById("separation"));
-
-(function updateLoop()
-{
-	setTimeout(updateLoop, 200);
-	separation.regen();
-})();
-(function renderLoop()
-{
-	requestAnimationFrame(renderLoop);
-	separation.render();
-})();
 
 })();
