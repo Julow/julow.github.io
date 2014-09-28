@@ -1,47 +1,5 @@
 (function(){
 
-function SeparationCanvas(canvas)
-{
-	this.canvas = canvas;
-	this.context = canvas.getContext('2d');
-
-	this.leftColor = "#606459";
-
-	this.x = canvas.width / 2;
-
-	this.checkSize();
-}
-SeparationCanvas.prototype.checkSize = function()
-{
-	this.canvas.height = 0;
-	var e = document.documentElement;
-	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
-	this.render();
-};
-SeparationCanvas.prototype.render = function()
-{
-	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	this.context.fillStyle = this.leftColor;
-	this.context.beginPath();
-	this.context.moveTo(this.x, 0);
-	var y = 0;
-	for (; y < this.canvas.height; y += 9)
-		this.context.lineTo(Math.random() * 8 - 4 + this.x, y);
-	y = this.canvas.height;
-	this.context.lineTo(Math.random() * 8 - 4 + this.x, y);
-	this.context.lineTo(0, y);
-	this.context.lineTo(0, 0);
-	this.context.lineTo(this.x, 0);
-	this.context.fill();
-};
-
-var separation = new SeparationCanvas(document.getElementById("separation"));
-setInterval(function()
-{
-	separation.render();
-}, 200);
-
-
 function repl(str, map)
 {
 	return str.replace(/\{\{([^\}]+)\}\}/g, function(match, p1)
@@ -72,12 +30,12 @@ Page.prototype.show = function()
 
 
 var pageMap = {
-	"#main":			new Page(["page-main"], "#00cad1"),
-	"#uumatter":		new Page(["page-uumatter", "foot-android"], "#86009e"),
+	"#main":			new Page(["page-main"], "#00adb3"),
+	"#uumatter":		new Page(["page-uumatter", "foot-android"], "#690069"),
 	"#tapwell":			new Page(["page-tapwell", "foot-android"], "#d6bd00"),
-	"#leaf":			new Page(["page-leaf", "foot-android"], "#03c200"),
-	"#color-highlight":	new Page(["page-color-highlight", "foot-sublime"], "#3296c8"),
-	"#layout-spliter":	new Page(["page-layout-spliter", "foot-sublime"], "#393939")
+	"#leaf":			new Page(["page-leaf", "foot-android"], "#03ba01"),
+	"#color-highlight":	new Page(["page-color-highlight", "foot-sublime"], "#2b81ab"),
+	"#layout-spliter":	new Page(["page-layout-spliter", "foot-sublime"], "#3b3b3b")
 };
 var style = document.createElement("style");
 document.getElementsByTagName("head")[0].appendChild(style);
@@ -96,9 +54,7 @@ function showPage(pageName)
 		currPage.hide();
 	currPage = page;
 	page.show();
-	separation.leftColor = page.color;
 	style.innerHTML = repl(innerStyle, {"color": page.color});
-	separation.render();
 }
 if (pageMap[window.location.hash])
 	showPage(window.location.hash);
@@ -114,5 +70,66 @@ window.addEventListener("resize", function()
 {
 	separation.checkSize();
 }, false);
+
+
+var mouseX = 0, mouseY = 0;
+
+window.addEventListener("mousemove", function(e)
+{
+	mouseX = e.clientX;
+	mouseY = e.clientY;
+}, false);
+
+
+function SeparationCanvas(canvas)
+{
+	this.canvas = canvas;
+	this.context = canvas.getContext('2d');
+
+	this.x = canvas.width / 2;
+	this.offsetY = 9;
+	this.pointsX = [];
+
+	this.checkSize();
+}
+SeparationCanvas.prototype.checkSize = function()
+{
+	this.canvas.height = 0;
+	var e = document.documentElement;
+	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
+};
+SeparationCanvas.prototype.regen = function()
+{
+	this.pointsX = [];
+	for (var y = 0; y < this.canvas.height; y += this.offsetY)
+		this.pointsX.push((((Math.random() * 8 - 4 + this.x) * 100) | 0) / 100);
+};
+SeparationCanvas.prototype.render = function()
+{
+	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+	this.context.fillStyle = currPage.color;
+	this.context.beginPath();
+	this.context.moveTo(this.x, 0);
+	for (var i = 0, y, diff; i < this.pointsX.length; ++i)
+		this.context.lineTo(this.pointsX[i], i * this.offsetY);
+	this.context.lineTo(0, this.canvas.height);
+	this.context.lineTo(0, 0);
+	this.context.lineTo(this.x, 0);
+	this.context.fill();
+};
+
+
+var separation = new SeparationCanvas(document.getElementById("separation"));
+
+(function updateLoop()
+{
+	setTimeout(updateLoop, 200);
+	separation.regen();
+})();
+(function renderLoop()
+{
+	requestAnimationFrame(renderLoop);
+	separation.render();
+})();
 
 })();
