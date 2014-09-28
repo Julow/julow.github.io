@@ -50,13 +50,34 @@ function repl(str, map)
 	});
 }
 
+
+function Page(ids, color)
+{
+	this.elements = [];
+	this.color = color;
+
+	for (var i = 0; i < ids.length; ++i)
+		this.elements[i] = document.getElementById(ids[i]);
+}
+Page.prototype.hide = function()
+{
+	for (var i = 0; i < this.elements.length; ++i)
+		this.elements[i].style.display = 'none';
+};
+Page.prototype.show = function()
+{
+	for (var i = 0; i < this.elements.length; ++i)
+		this.elements[i].style.display = 'block';
+};
+
+
 var pageMap = {
-	"#main":			{"color": "#00cad1", "html": document.getElementById("page-main")},
-	"#color-highlight":	{"color": "#3296c8", "html": document.getElementById("page-color-highlight")},
-	"#sublime-layout":	{"color": "#232323", "html": document.getElementById("page-sublime-layout")},
-	"#uumatter":		{"color": "#86009e", "html": document.getElementById("page-uumatter")},
-	"#tapwell":			{"color": "#d6bd00", "html": document.getElementById("page-tapwell")},
-	"#leaf":			{"color": "#03c200", "html": document.getElementById("page-leaf")}
+	"#main":			new Page(["page-main"], "#00cad1"),
+	"#uumatter":		new Page(["page-uumatter", "foot-android"], "#86009e"),
+	"#tapwell":			new Page(["page-tapwell", "foot-android"], "#d6bd00"),
+	"#leaf":			new Page(["page-leaf", "foot-android"], "#03c200"),
+	"#color-highlight":	new Page(["page-color-highlight", "foot-sublime"], "#3296c8"),
+	"#layout-spliter":	new Page(["page-layout-spliter", "foot-sublime"], "#393939")
 };
 var style = document.createElement("style");
 document.getElementsByTagName("head")[0].appendChild(style);
@@ -65,17 +86,16 @@ var innerStyle = "::selection{background:{{color}};}" +
 	"::-moz-selection{background:{{color}};}" +
 	"#left-part{background-color:{{color}};}" +
 	"#right-part a,.title-right{color:{{color}};}";
+
 function showPage(pageName)
 {
 	var page = pageMap[pageName];
 	if (!page)
 		return;
 	if (currPage)
-	{
-		currPage.html.style.display = "none";
-	}
+		currPage.hide();
 	currPage = page;
-	page.html.style.display = "block";
+	page.show();
 	separation.leftColor = page.color;
 	style.innerHTML = repl(innerStyle, {"color": page.color});
 	separation.render();
