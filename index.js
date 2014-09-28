@@ -30,7 +30,7 @@ SeparationCanvas.prototype.regen = function()
 {
 	this.pointsX = [];
 	for (var y = 0; y < this.canvas.height; y += this.offsetY)
-		this.pointsX.push((((Math.random() * 8 - 4 + this.x) * 100) | 0) / 100);
+		this.pointsX.push((Math.random() * 8 - 4 + this.x) | 0);
 };
 SeparationCanvas.prototype.render = function()
 {
