@@ -72,15 +72,6 @@ window.addEventListener("resize", function()
 }, false);
 
 
-var mouseX = 0, mouseY = 0;
-
-window.addEventListener("mousemove", function(e)
-{
-	mouseX = e.clientX;
-	mouseY = e.clientY;
-}, false);
-
-
 function SeparationCanvas(canvas)
 {
 	this.canvas = canvas;
