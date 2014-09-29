@@ -85,12 +85,13 @@ Page.prototype.show = function()
 
 
 var pageMap = {
-	"#main":			new Page(["page-main"], "#00adb3"),
-	"#uumatter":		new Page(["page-uumatter", "foot-android"], "#690069"),
-	"#tapwell":			new Page(["page-tapwell", "foot-android"], "#d6bd00"),
-	"#leaf":			new Page(["page-leaf", "foot-android"], "#03ba01"),
-	"#color-highlight":	new Page(["page-color-highlight", "foot-sublime"], "#2b81ab"),
-	"#layout-spliter":	new Page(["page-layout-spliter", "foot-sublime"], "#3b3b3b")
+	"#main":				new Page(["page-main"], "#00adb3"),
+	"#uumatter":			new Page(["page-uumatter", "foot-android"], "#690069"),
+	"#tapwell":				new Page(["page-tapwell", "foot-android"], "#d6bd00"),
+	"#leaf":				new Page(["page-leaf", "foot-android"], "#03ba01"),
+	"#language-injector":	new Page(["page-language-injector", "foot-sublime"], "#7d0707"),
+	"#layout-spliter":		new Page(["page-layout-spliter", "foot-sublime"], "#3b3b3b"),
+	"#color-highlight":		new Page(["page-color-highlight", "foot-sublime"], "#2b81ab")
 };
 var style = document.createElement("style");
 document.getElementsByTagName("head")[0].appendChild(style);
