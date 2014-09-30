@@ -91,7 +91,9 @@ var pageMap = {
 	"#leaf":				new Page(["page-leaf", "foot-android"], "#03ba01"),
 	"#language-injector":	new Page(["page-language-injector", "foot-sublime"], "#7d0707"),
 	"#layout-spliter":		new Page(["page-layout-spliter", "foot-sublime"], "#3b3b3b"),
-	"#color-highlight":		new Page(["page-color-highlight", "foot-sublime"], "#2b81ab")
+	"#color-highlight":		new Page(["page-color-highlight", "foot-sublime"], "#2b81ab"),
+	"#stop-flash":			new Page(["page-stop-flash", "foot-chrome"], "#e66300"),
+	"#kikoo":				new Page(["page-kikoo", "foot-chrome"], "#2448ff")
 };
 var style = document.createElement("style");
 document.getElementsByTagName("head")[0].appendChild(style);
