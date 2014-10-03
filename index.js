@@ -101,7 +101,8 @@ var currPage = null;
 var innerStyle = "::selection{background:{{color}};}" +
 	"::-moz-selection{background:{{color}};}" +
 	"#left-part{background-color:{{color}};}" +
-	"#right-part a,.title-right{color:{{color}};}";
+	"#right-part a,.title-right{color:{{color}};}" +
+	".banner{box-shadow:0 1px 2px {{color}}, 0 -1px 2px {{color}};}";
 
 function showPage(pageName)
 {
