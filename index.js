@@ -107,9 +107,7 @@ var pageMap = {
 var style = document.createElement("style");
 document.getElementsByTagName("head")[0].appendChild(style);
 var currPage = null;
-var innerStyle = "::selection{background:{{color}};}" +
-	"::-moz-selection{background:{{color}};}" +
-	"body,#left-part{background-color:{{color}};}" +
+var innerStyle = "body,#left-part{background-color:{{color}};}" +
 	"#right-part a,.title-right{color:{{color}};}" +
 	".banner{box-shadow:0 0px 2px {{color}};border-bottom:1px solid {{color}};}";
 

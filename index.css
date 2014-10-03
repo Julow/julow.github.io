@@ -1,9 +1,11 @@
 ::selection
 {
+	background:orange;
 	text-shadow:none;
 }
 ::-moz-selection
 {
+	background:orange;
 	text-shadow:none;
 }
 /**
