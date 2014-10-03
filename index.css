@@ -57,44 +57,18 @@ h2
  */
 #left-part
 {
+	z-index:99;
 	width:20%;
 	min-width:145px;
 	background:#606459;
 	text-align:right;
 }
 /**
- * - - Title
- */
-#title-box
-{
-	overflow:hidden;
-	display:inline-block;
-	margin:40px 0 0 0;
-}
-#title-layout
-{
-	display:inline-block;
-	width:120px;
-	margin:0 2vw 0 0;
-	text-align:right;
-}
-.title
-{
-	margin:0;
-	font-size:64px;
-	color:#e9e9e9;
-}
-.title-right
-{
-	z-index:-1;
-	position:absolute;
-}
-/**
  * - - Logo
  */
 #logo
 {
-	margin:40px 2vw 0 0;
+	margin:140px 2vw 0 0;
 	border:2px solid #e9e9e9;
 	border-radius:4px;
 	box-shadow:0 0 2px rgba(0, 0, 0, 0.2);
@@ -104,9 +78,10 @@ h2
  */
 #separation
 {
+	z-index:-1;
 	position:absolute;
 	top:0;
-	right:-10px;
+	right:-155px;
 }
 /**
  * - - Text
@@ -151,12 +126,12 @@ h2
  */
 #right-part
 {
-	z-index:-2;
 	overflow:hidden;
 	width:80%;
 	max-width:1024px;
 	background:#e9e9e9;
-	box-shadow:2px 0 2px #c9c9c9;
+	border-right:1px solid #cacaca;
+	box-shadow:0 0 3px #bababa;
 	text-shadow:0 0 1px #fcfcfc;
 	color:#222222;
 }

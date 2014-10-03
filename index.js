@@ -11,19 +11,13 @@ function SeparationCanvas(canvas)
 	this.offsetY = 9;
 	this.pointsX = [];
 
-	this.lastHeight = 0;
-
 	this.checkSize();
 }
 SeparationCanvas.prototype.checkSize = function()
 {
 	var e = document.documentElement;
-	var height = Math.max(e.clientHeight, e.scrollHeight);
-	if (height == this.lastHeight)
-		return;
-	this.lastHeight = height;
 	this.canvas.height = 0;
-	this.canvas.height = height;
+	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
 	this.render();
 };
 SeparationCanvas.prototype.regen = function()
@@ -34,16 +28,34 @@ SeparationCanvas.prototype.regen = function()
 };
 SeparationCanvas.prototype.render = function()
 {
-	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+	var x5 = this.x - 5;
+	this.context.globalCompositeOperation = "source-over";
 	this.context.fillStyle = this.color;
+	this.context.clearRect(0, 40, this.canvas.width, 80);
+	this.context.clearRect(x5, 0, 10, this.canvas.height);
 	this.context.beginPath();
 	this.context.moveTo(this.x, 0);
 	for (var i = 0, y, diff; i < this.pointsX.length; ++i)
 		this.context.lineTo(this.pointsX[i], i * this.offsetY);
-	this.context.lineTo(0, this.canvas.height);
-	this.context.lineTo(0, 0);
+	this.context.lineTo(x5, this.canvas.height);
+	this.context.lineTo(x5, 0);
 	this.context.lineTo(this.x, 0);
 	this.context.fill();
+	this.context.fillRect(0, 35, x5, 75);
+	this.context.font = "bold 70px Arial,sans-serif";
+	this.context.textAlign = "center";
+	this.context.save();
+	this.context.fillStyle = "#e9e9e9";
+	this.context.globalCompositeOperation = "source-atop";
+	this.context.fillText("JULOO", 150, 100);
+	this.context.restore();
+	this.context.shadowBlur = 1;
+	this.context.shadowColor = this.color;
+	this.context.shadowOffsetX = 0;
+	this.context.shadowOffsetY = 0;
+	this.context.globalCompositeOperation = "destination-over";
+	this.context.fillText("JULOO", 150, 100);
+	this.context.shadowBlur = 0;
 };
 
 var separation = new SeparationCanvas(document.getElementById("separation"));
@@ -102,7 +114,7 @@ var innerStyle = "::selection{background:{{color}};}" +
 	"::-moz-selection{background:{{color}};}" +
 	"#left-part{background-color:{{color}};}" +
 	"#right-part a,.title-right{color:{{color}};}" +
-	".banner{box-shadow:0 1px 2px {{color}}, 0 -1px 2px {{color}};}";
+	".banner{box-shadow:0 0px 2px {{color}};border-bottom:1px solid {{color}};}";
 
 function showPage(pageName)
 {
