@@ -31,8 +31,7 @@ SeparationCanvas.prototype.render = function()
 	var x5 = this.x - 5;
 	this.context.globalCompositeOperation = "source-over";
 	this.context.fillStyle = this.color;
-	this.context.clearRect(0, 40, this.canvas.width, 80);
-	this.context.clearRect(x5, 0, 10, this.canvas.height);
+	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	this.context.beginPath();
 	this.context.moveTo(this.x, 0);
 	for (var i = 0, y, diff; i < this.pointsX.length; ++i)
@@ -44,12 +43,10 @@ SeparationCanvas.prototype.render = function()
 	this.context.fillRect(0, 35, x5, 75);
 	this.context.font = "bold 70px Arial,sans-serif";
 	this.context.textAlign = "center";
-	this.context.save();
 	this.context.fillStyle = "#e9e9e9";
 	this.context.globalCompositeOperation = "source-atop";
 	this.context.fillText("JULOO", 150, 100);
-	this.context.restore();
-	this.context.shadowBlur = 1;
+	this.context.shadowBlur = 0.5;
 	this.context.shadowColor = this.color;
 	this.context.shadowOffsetX = 0;
 	this.context.shadowOffsetY = 0;

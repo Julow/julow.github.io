@@ -19,7 +19,7 @@ body
 	height:100%;
 	min-width:760px;
 	font-family:Arial, sans-serif;
-	font-size:16px;
+	font-size:0;
 }
 a, a:visited
 {
@@ -47,9 +47,11 @@ h2
  */
 .part
 {
-	float:left;
 	position:relative;
+	display:inline-block;
+	vertical-align:top;
 	min-height:100%;
+	font-size:16px;
 }
 /**
  * - Left part
