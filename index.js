@@ -1,4 +1,4 @@
-(function(){
+(function(doc, win){
 
 function JulooCanvas(canvas)
 {
@@ -17,7 +17,7 @@ function JulooCanvas(canvas)
 }
 JulooCanvas.prototype.checkSize = function()
 {
-	var e = document.documentElement;
+	var e = doc.documentElement;
 	this.canvas.height = 0;
 	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
 	this.render();
@@ -36,7 +36,6 @@ JulooCanvas.prototype.regen = function()
 JulooCanvas.prototype.render = function()
 {
 	var x5 = this.x - 5;
-	this.context.globalCompositeOperation = "source-over";
 	this.context.fillStyle = this.color;
 	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	this.context.beginPath();
@@ -62,7 +61,7 @@ JulooCanvas.prototype.render = function()
 	this.context.shadowBlur = 0;
 };
 
-var canvas = new JulooCanvas(document.getElementById("canvas"));
+var canvas = new JulooCanvas(doc.getElementById("canvas"));
 (function updateLoop()
 {
 	setTimeout(updateLoop, 200);
@@ -83,13 +82,13 @@ function repl(str, map)
 function animation(duration, callback)
 {
 	var startTime = performance.now();
-	requestAnimationFrame(function animUpdate()
+	(function animUpdate()
 	{
 		var progress = (performance.now() - startTime) / duration;
 		if (progress < 1)
 			requestAnimationFrame(animUpdate);
 		callback((progress > 1)? 1 : progress);
-	});
+	})();
 }
 function animationValue(progress, start, end)
 {
@@ -121,7 +120,7 @@ function Page(ids, color)
 	this.color = color;
 
 	for (var i = 0; i < ids.length; ++i)
-		this.elements[i] = document.getElementById(ids[i]);
+		this.elements[i] = doc.getElementById(ids[i]);
 }
 Page.prototype.hide = function()
 {
@@ -146,8 +145,8 @@ var pageMap = {
 	"#stop-flash":			new Page(["page-stop-flash", "foot-chrome"], "#8c322b"),
 	"#kikoo":				new Page(["page-kikoo", "foot-chrome"], "#7c5231")
 };
-var style = document.createElement("style");
-document.getElementsByTagName("head")[0].appendChild(style);
+var style = doc.createElement("style");
+doc.getElementsByTagName("head")[0].appendChild(style);
 var currPage = null;
 var innerStyle = "body{background-color:{{color}};}" +
 	"#right-part a,.title-right{color:{{color}};}" +
@@ -178,15 +177,15 @@ function showPage(pageName)
 	currPage = page;
 	page.show();
 }
-if (pageMap[window.location.hash])
-	showPage(window.location.hash);
+if (pageMap[win.location.hash])
+	showPage(win.location.hash);
 else
 	showPage(Object.keys(pageMap)[0]);
 
 
-var leftPart = document.getElementById("left-part");
+var leftPart = doc.getElementById("left-part");
 
-document.addEventListener("mousemove", function(e)
+doc.addEventListener("mousemove", function(e)
 {
 	var n = e.clientX / 512;
 	var margin = Math.round(n * (10 - n));
@@ -196,13 +195,13 @@ document.addEventListener("mousemove", function(e)
 }, false);
 
 
-window.addEventListener("hashchange", function()
+win.addEventListener("hashchange", function()
 {
-	showPage(window.location.hash);
+	showPage(win.location.hash);
 }, false);
-window.addEventListener("resize", function()
+win.addEventListener("resize", function()
 {
 	canvas.checkSize();
 }, false);
 
-})();
+})(document, window);
