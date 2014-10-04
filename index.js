@@ -123,9 +123,9 @@ Page.prototype.setVisible = function(visible)
 
 
 var pageMap = {
-	"#main":				new Page("page-main", "#00adb3"),
-	"#uumatter":			new Page("page-uumatter", "#6a206a"),
-	"#tapwell":				new Page("page-tapwell", "#ab7a07"),
+	"#main":				new Page("page-main", "#188386"),
+	"#uumatter":			new Page("page-uumatter", "#6a2f6a"),
+	"#tapwell":				new Page("page-tapwell", "#927020"),
 	"#leaf":				new Page("page-leaf", "#258023"),
 	"#language-injector":	new Page("page-language-injector", "#7e1b1b"),
 	"#layout-spliter":		new Page("page-layout-spliter", "#3b3b3b"),
