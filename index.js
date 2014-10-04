@@ -20,6 +20,11 @@ SeparationCanvas.prototype.checkSize = function()
 	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
 	this.render();
 };
+SeparationCanvas.prototype.setColor = function(c)
+{
+	this.color = c;
+	this.render();
+}
 SeparationCanvas.prototype.regen = function()
 {
 	this.pointsX = [];
@@ -73,6 +78,41 @@ function repl(str, map)
 }
 
 
+function animation(duration, callback)
+{
+	var startTime = performance.now();
+	requestAnimationFrame(function animUpdate()
+	{
+		var progress = (performance.now() - startTime) / duration;
+		if (progress < 1)
+			requestAnimationFrame(animUpdate);
+		callback((progress > 1)? 1 : progress);
+	});
+}
+function animationValue(progress, start, end)
+{
+	if (start > end)
+		return start - ((start - end) * progress);
+	return (end - start) * progress + start;
+}
+
+
+function hexToRgb(hex)
+{
+	var len = (hex.length == 4)? 1 : 2;
+	function getNum(index)
+	{
+		var h = hex.substr(1 + index, len);
+		return parseInt((len == 1)? h + h : h, 16);
+	}
+	return {r: getNum(0), g: getNum(len), b: getNum(len + len)};
+}
+function rgbToHex(r, g, b)
+{
+	return "#" + (0x01000000 + (r << 16) + (g << 8) + b).toString(16).substr(1, 6);
+}
+
+
 function Page(ids, color)
 {
 	this.elements = [];
@@ -95,14 +135,14 @@ Page.prototype.show = function()
 
 var pageMap = {
 	"#main":				new Page(["page-main"], "#00adb3"),
-	"#uumatter":			new Page(["page-uumatter", "foot-android"], "#690069"),
-	"#tapwell":				new Page(["page-tapwell", "foot-android"], "#d6bd00"),
-	"#leaf":				new Page(["page-leaf", "foot-android"], "#03ba01"),
-	"#language-injector":	new Page(["page-language-injector", "foot-sublime"], "#7d0707"),
+	"#uumatter":			new Page(["page-uumatter", "foot-android"], "#6a206a"),
+	"#tapwell":				new Page(["page-tapwell", "foot-android"], "#ab7a07"),
+	"#leaf":				new Page(["page-leaf", "foot-android"], "#258023"),
+	"#language-injector":	new Page(["page-language-injector", "foot-sublime"], "#7e1b1b"),
 	"#layout-spliter":		new Page(["page-layout-spliter", "foot-sublime"], "#3b3b3b"),
 	"#color-highlight":		new Page(["page-color-highlight", "foot-sublime"], "#2b81ab"),
-	"#stop-flash":			new Page(["page-stop-flash", "foot-chrome"], "#e66300"),
-	"#kikoo":				new Page(["page-kikoo", "foot-chrome"], "#2448ff")
+	"#stop-flash":			new Page(["page-stop-flash", "foot-chrome"], "#8c322b"),
+	"#kikoo":				new Page(["page-kikoo", "foot-chrome"], "#7c5231")
 };
 var style = document.createElement("style");
 document.getElementsByTagName("head")[0].appendChild(style);
@@ -117,12 +157,24 @@ function showPage(pageName)
 	if (!page)
 		return;
 	if (currPage)
+	{
+		var currColor = hexToRgb(currPage.color);
+		var toColor = hexToRgb(page.color);
+		animation(240, function(p)
+		{
+			var color = rgbToHex(animationValue(p, currColor.r, toColor.r), animationValue(p, currColor.g, toColor.g), animationValue(p, currColor.b, toColor.b));
+			style.innerHTML = repl(innerStyle, {"color": color});
+			separation.setColor(color);
+		});
 		currPage.hide();
+	}
+	else
+	{
+		style.innerHTML = repl(innerStyle, {"color": page.color});
+		separation.setColor(page.color);
+	}
 	currPage = page;
 	page.show();
-	style.innerHTML = repl(innerStyle, {"color": page.color});
-	separation.color = page.color;
-	separation.render();
 }
 if (pageMap[window.location.hash])
 	showPage(window.location.hash);
