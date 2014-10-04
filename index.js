@@ -118,7 +118,10 @@ function Page(id, color)
 }
 Page.prototype.setVisible = function(visible)
 {
-	this.element.className = visible? "page visible" : "page";
+	if (visible)
+		this.element.className = this.element.className + " visible";
+	else
+		this.element.className = this.element.className.replace(/ *visible *|  +/g, " ");
 };
 
 
