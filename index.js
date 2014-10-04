@@ -136,8 +136,7 @@ var pageMap = {
 var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
 var currPage = null;
-var innerStyle = "body{background-color:{{color}};}" +
-	"#right-part a,.title-right{color:{{color}};}" +
+var innerStyle = "#right-part a{color:{{color}};}" +
 	".banner{box-shadow:0 0px 2px {{color}};border-bottom:1px solid {{color}};}";
 
 function showPage(pageName)
@@ -149,19 +148,20 @@ function showPage(pageName)
 	{
 		var currColor = hexToRgb(currPage.color);
 		var toColor = hexToRgb(page.color);
-		animation(320, function(p)
+		animation(270, function(p)
 		{
 			var color = rgbToHex(animationValue(p, currColor.r, toColor.r), animationValue(p, currColor.g, toColor.g), animationValue(p, currColor.b, toColor.b));
-			style.innerHTML = repl(innerStyle, {"color": color});
+			doc.body.style.backgroundColor = color;
 			canvas.setColor(color);
 		});
 		currPage.setVisible(false);
 	}
 	else
 	{
-		style.innerHTML = repl(innerStyle, {"color": page.color});
+		doc.body.style.backgroundColor = page.color;
 		canvas.setColor(page.color);
 	}
+	style.innerHTML = repl(innerStyle, {"color": page.color});
 	currPage = page;
 	page.setVisible(true);
 }
