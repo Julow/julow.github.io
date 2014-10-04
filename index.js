@@ -12,6 +12,7 @@ function JulooCanvas(canvas)
 	this.pointsX = [];
 
 	this.titleX = 170;
+	this.titleY = 90;
 
 	this.checkSize();
 }
@@ -51,13 +52,13 @@ JulooCanvas.prototype.render = function()
 	this.context.textAlign = "center";
 	this.context.fillStyle = "#e9e9e9";
 	this.context.globalCompositeOperation = "source-atop";
-	this.context.fillText("JULOO", this.titleX, 100);
+	this.context.fillText("JULOO", this.titleX, this.titleY);
 	this.context.shadowBlur = 0.5;
 	this.context.shadowColor = this.color;
 	this.context.shadowOffsetX = 0;
 	this.context.shadowOffsetY = 0;
 	this.context.globalCompositeOperation = "destination-over";
-	this.context.fillText("JULOO", this.titleX, 100);
+	this.context.fillText("JULOO", this.titleX, this.titleY);
 	this.context.shadowBlur = 0;
 };
 
@@ -183,14 +184,21 @@ else
 	showPage(Object.keys(pageMap)[0]);
 
 
-var leftPart = doc.getElementById("left-part");
+function getMargin(pos)
+{
+	var n = pos / 512;
+	return Math.round(n * (10 - n));
+}
+
 
 doc.addEventListener("mousemove", function(e)
 {
-	var n = e.clientX / 512;
-	var margin = Math.round(n * (10 - n));
-	leftPart.style.marginLeft = margin + "px";
-	canvas.titleX = 170 - margin;
+	var marginX = getMargin(e.clientX);
+	var marginY = -getMargin(e.clientY);
+	doc.body.style.marginLeft = marginX + "px";
+	doc.body.style.marginTop = marginY + "px";
+	canvas.titleX = 170 - Math.round(marginX * 0.8);
+	canvas.titleY = 90 - marginY;
 	canvas.render();
 }, false);
 
