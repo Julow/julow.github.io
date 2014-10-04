@@ -1,6 +1,6 @@
 (function(){
 
-function SeparationCanvas(canvas)
+function JulooCanvas(canvas)
 {
 	this.canvas = canvas;
 	this.context = canvas.getContext('2d');
@@ -11,27 +11,29 @@ function SeparationCanvas(canvas)
 	this.offsetY = 9;
 	this.pointsX = [];
 
+	this.titleX = 170;
+
 	this.checkSize();
 }
-SeparationCanvas.prototype.checkSize = function()
+JulooCanvas.prototype.checkSize = function()
 {
 	var e = document.documentElement;
 	this.canvas.height = 0;
 	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
 	this.render();
 };
-SeparationCanvas.prototype.setColor = function(c)
+JulooCanvas.prototype.setColor = function(c)
 {
 	this.color = c;
 	this.render();
 }
-SeparationCanvas.prototype.regen = function()
+JulooCanvas.prototype.regen = function()
 {
 	this.pointsX = [];
 	for (var y = 0; y < this.canvas.height; y += this.offsetY)
 		this.pointsX.push((Math.random() * 8 - 4 + this.x) | 0);
 };
-SeparationCanvas.prototype.render = function()
+JulooCanvas.prototype.render = function()
 {
 	var x5 = this.x - 5;
 	this.context.globalCompositeOperation = "source-over";
@@ -50,22 +52,22 @@ SeparationCanvas.prototype.render = function()
 	this.context.textAlign = "center";
 	this.context.fillStyle = "#e9e9e9";
 	this.context.globalCompositeOperation = "source-atop";
-	this.context.fillText("JULOO", 150, 100);
+	this.context.fillText("JULOO", this.titleX, 100);
 	this.context.shadowBlur = 0.5;
 	this.context.shadowColor = this.color;
 	this.context.shadowOffsetX = 0;
 	this.context.shadowOffsetY = 0;
 	this.context.globalCompositeOperation = "destination-over";
-	this.context.fillText("JULOO", 150, 100);
+	this.context.fillText("JULOO", this.titleX, 100);
 	this.context.shadowBlur = 0;
 };
 
-var separation = new SeparationCanvas(document.getElementById("separation"));
+var canvas = new JulooCanvas(document.getElementById("canvas"));
 (function updateLoop()
 {
 	setTimeout(updateLoop, 200);
-	separation.regen();
-	separation.render();
+	canvas.regen();
+	canvas.render();
 })();
 
 
@@ -164,14 +166,14 @@ function showPage(pageName)
 		{
 			var color = rgbToHex(animationValue(p, currColor.r, toColor.r), animationValue(p, currColor.g, toColor.g), animationValue(p, currColor.b, toColor.b));
 			style.innerHTML = repl(innerStyle, {"color": color});
-			separation.setColor(color);
+			canvas.setColor(color);
 		});
 		currPage.hide();
 	}
 	else
 	{
 		style.innerHTML = repl(innerStyle, {"color": page.color});
-		separation.setColor(page.color);
+		canvas.setColor(page.color);
 	}
 	currPage = page;
 	page.show();
@@ -182,13 +184,25 @@ else
 	showPage(Object.keys(pageMap)[0]);
 
 
+var leftPart = document.getElementById("left-part");
+
+document.addEventListener("mousemove", function(e)
+{
+	var n = e.clientX / 512;
+	var margin = Math.round(n * (10 - n));
+	leftPart.style.marginLeft = margin + "px";
+	canvas.titleX = 170 - margin;
+	canvas.render();
+}, false);
+
+
 window.addEventListener("hashchange", function()
 {
 	showPage(window.location.hash);
 }, false);
 window.addEventListener("resize", function()
 {
-	separation.checkSize();
+	canvas.checkSize();
 }, false);
 
 })();

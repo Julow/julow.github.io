@@ -79,7 +79,7 @@ h2
 /**
  * - - Canvas
  */
-#separation
+#canvas
 {
 	pointer-events:none;
 	z-index:-1;
