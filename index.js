@@ -53,13 +53,9 @@ JulooCanvas.prototype.render = function()
 	this.context.fillStyle = "#e9e9e9";
 	this.context.globalCompositeOperation = "source-atop";
 	this.context.fillText("JULOO", this.titleX, this.titleY);
-	this.context.shadowBlur = 0.5;
-	this.context.shadowColor = this.color;
-	this.context.shadowOffsetX = 0;
-	this.context.shadowOffsetY = 0;
+	this.context.fillStyle = this.color;
 	this.context.globalCompositeOperation = "destination-over";
 	this.context.fillText("JULOO", this.titleX, this.titleY);
-	this.context.shadowBlur = 0;
 };
 
 var canvas = new JulooCanvas(doc.getElementById("canvas"));
@@ -88,7 +84,7 @@ function animation(duration, callback)
 		var progress = (performance.now() - startTime) / duration;
 		if (progress < 1)
 			requestAnimationFrame(animUpdate);
-		callback((progress > 1)? 1 : progress);
+		callback((progress > 1)? 1 : (progress - 2) * -progress);
 	})();
 }
 function animationValue(progress, start, end)
@@ -162,7 +158,7 @@ function showPage(pageName)
 	{
 		var currColor = hexToRgb(currPage.color);
 		var toColor = hexToRgb(page.color);
-		animation(240, function(p)
+		animation(320, function(p)
 		{
 			var color = rgbToHex(animationValue(p, currColor.r, toColor.r), animationValue(p, currColor.g, toColor.g), animationValue(p, currColor.b, toColor.b));
 			style.innerHTML = repl(innerStyle, {"color": color});
