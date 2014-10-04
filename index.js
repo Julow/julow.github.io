@@ -111,36 +111,27 @@ function rgbToHex(r, g, b)
 }
 
 
-function Page(ids, color)
+function Page(id, color)
 {
-	this.elements = [];
+	this.element = doc.getElementById(id);
 	this.color = color;
-
-	for (var i = 0; i < ids.length; ++i)
-		this.elements[i] = doc.getElementById(ids[i]);
 }
-Page.prototype.hide = function()
+Page.prototype.setVisible = function(visible)
 {
-	for (var i = 0; i < this.elements.length; ++i)
-		this.elements[i].style.display = 'none';
-};
-Page.prototype.show = function()
-{
-	for (var i = 0; i < this.elements.length; ++i)
-		this.elements[i].style.display = 'block';
+	this.element.className = visible? "page visible" : "page";
 };
 
 
 var pageMap = {
-	"#main":				new Page(["page-main"], "#00adb3"),
-	"#uumatter":			new Page(["page-uumatter", "foot-android"], "#6a206a"),
-	"#tapwell":				new Page(["page-tapwell", "foot-android"], "#ab7a07"),
-	"#leaf":				new Page(["page-leaf", "foot-android"], "#258023"),
-	"#language-injector":	new Page(["page-language-injector", "foot-sublime"], "#7e1b1b"),
-	"#layout-spliter":		new Page(["page-layout-spliter", "foot-sublime"], "#3b3b3b"),
-	"#color-highlight":		new Page(["page-color-highlight", "foot-sublime"], "#2b81ab"),
-	"#stop-flash":			new Page(["page-stop-flash", "foot-chrome"], "#8c322b"),
-	"#kikoo":				new Page(["page-kikoo", "foot-chrome"], "#7c5231")
+	"#main":				new Page("page-main", "#00adb3"),
+	"#uumatter":			new Page("page-uumatter", "#6a206a"),
+	"#tapwell":				new Page("page-tapwell", "#ab7a07"),
+	"#leaf":				new Page("page-leaf", "#258023"),
+	"#language-injector":	new Page("page-language-injector", "#7e1b1b"),
+	"#layout-spliter":		new Page("page-layout-spliter", "#3b3b3b"),
+	"#color-highlight":		new Page("page-color-highlight", "#2b81ab"),
+	"#stop-flash":			new Page("page-stop-flash", "#8c322b"),
+	"#kikoo":				new Page("page-kikoo", "#7c5231")
 };
 var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
@@ -164,7 +155,7 @@ function showPage(pageName)
 			style.innerHTML = repl(innerStyle, {"color": color});
 			canvas.setColor(color);
 		});
-		currPage.hide();
+		currPage.setVisible(false);
 	}
 	else
 	{
@@ -172,7 +163,7 @@ function showPage(pageName)
 		canvas.setColor(page.color);
 	}
 	currPage = page;
-	page.show();
+	page.setVisible(true);
 }
 if (pageMap[win.location.hash])
 	showPage(win.location.hash);
