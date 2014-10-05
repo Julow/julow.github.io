@@ -61,12 +61,12 @@ JulooCanvas.prototype.render = function()
 };
 
 var canvas = new JulooCanvas(doc.getElementById("canvas"));
-(function updateLoop()
+setTimeout(function updateLoop()
 {
 	setTimeout(updateLoop, 200);
 	canvas.regen();
 	canvas.render();
-})();
+}, 50);
 
 function repl(str, map)
 {
