@@ -48,6 +48,7 @@ JulooCanvas.prototype.render = function()
 {
 	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	this.context.drawImage(this.cacheCanvas, this.x - 5, 0);
+	this.context.fillStyle = this.color;
 	this.context.fillRect(0, 35, this.x - 5, 150);
 	this.context.font = "bold 70px Arial,sans-serif";
 	this.context.textAlign = "center";
