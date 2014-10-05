@@ -181,6 +181,11 @@ h2
 	margin:12px 2%;
 	background:#ececec;
 	box-shadow:0 0 1px #cccccc;
+	transition:box-shadow .3s ease;
+}
+.case:hover
+{
+	box-shadow:0 0 1px #aaaaaa;
 }
 .large
 {
@@ -193,6 +198,12 @@ h2
 	overflow:hidden;
 	position:relative;
 	padding:0 0 30% 0;
+	transition:opacity .3s ease;
+}
+a.big-center:hover
+{
+	opacity:.8;
+	transition:opacity .4s ease;
 }
 .big-center > *
 {
