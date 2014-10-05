@@ -130,9 +130,6 @@ var pageMap = {
 	"#uumatter":			new Page("page-uumatter", "#6a2f6a"),
 	"#tapwell":				new Page("page-tapwell", "#927020"),
 	"#leaf":				new Page("page-leaf", "#258023"),
-	"#language-injector":	new Page("page-language-injector", "#7e1b1b"),
-	"#layout-spliter":		new Page("page-layout-spliter", "#3b3b3b"),
-	"#color-highlight":		new Page("page-color-highlight", "#2b81ab"),
 	"#stop-flash":			new Page("page-stop-flash", "#8c322b"),
 	"#kikoo":				new Page("page-kikoo", "#7c5231")
 };
