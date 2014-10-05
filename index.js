@@ -10,10 +10,12 @@ function JulooCanvas(canvas)
 
 	this.color = "rgba(0,0,0,0)";
 
-	this.x = this.canvas.width / 2;
+	this.x = this.canvas.width - 150;
 
-	this.titleX = 170;
-	this.titleY = 90;
+	this.initialTitleX = this.canvas.width - 130;
+	this.initialTitleY = 90;
+	this.titleX = this.initialTitleX;
+	this.titleY = this.initialTitleY;
 
 	this.checkSize();
 }
@@ -176,8 +178,8 @@ doc.addEventListener("mousemove", function(e)
 	var marginY = -getMargin(e.clientY);
 	doc.body.style.marginLeft = marginX + "px";
 	doc.body.style.marginTop = marginY + "px";
-	canvas.titleX = 170 - Math.round(marginX * 0.8);
-	canvas.titleY = 90 - marginY;
+	canvas.titleX = canvas.initialTitleX - Math.round(marginX * 0.8);
+	canvas.titleY = canvas.initialTitleY - marginY;
 	canvas.render();
 }, false);
 
