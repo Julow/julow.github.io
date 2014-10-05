@@ -131,7 +131,7 @@ h2
 	visibility:hidden;
 	transition:opacity .2s ease-out,visibility 0s ease .2s;
 }
-.visible
+.page.visible
 {
 	z-index:1;
 	position:relative;
@@ -151,11 +151,13 @@ h2
 }
 .case
 {
+	position:relative;
 	display:inline-block;
 	vertical-align:top;
 	width:35%;
 	min-width:190px;
 	margin:12px 2%;
+	padding:0 0 14px 0;
 	background:#ececec;
 	box-shadow:0 0 1px #cccccc;
 	transition:box-shadow .3s ease,opacity .4s ease;
@@ -177,10 +179,9 @@ a.case:hover
 .big-center
 {
 	overflow:hidden;
-	position:relative;
 	padding:0 0 30% 0;
 }
-.big-center > *
+.big-center img
 {
 	position:absolute;
 	top:-9999px;
@@ -188,4 +189,16 @@ a.case:hover
 	bottom:-9999px;
 	left:-9999px;
 	margin:auto;
+}
+.type
+{
+	position:absolute;
+	right:0;
+	bottom:0;
+	padding:0 4px;
+	background:#dddddd;
+	border-top:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+	font-size:12px;
+	color:#777777;
 }
