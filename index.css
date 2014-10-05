@@ -118,10 +118,9 @@ h2
 	text-shadow:0 0 1px #fafafa;
 	color:#222222;
 }
-.banner
-{
-	width:100%;
-}
+/**
+ * - - Page content
+ */
 .page
 {
 	z-index:0;
@@ -139,6 +138,16 @@ h2
 	visibility:visible;
 	transition:opacity .17s ease-in-out,visibility 0s ease 0s;
 }
+/**
+ * - - - Page banner
+ */
+.banner
+{
+	width:100%;
+}
+/**
+ * - - - Page blocks
+ */
 .block
 {
 	margin:40px 0 70px 6vw;
@@ -149,6 +158,9 @@ h2
 	padding:120px 0 80px 0;
 	text-align:center;
 }
+/**
+ * - - - Case table content
+ */
 .case
 {
 	position:relative;
@@ -165,10 +177,6 @@ h2
 .case:hover
 {
 	box-shadow:0 0 1px #aaaaaa;
-}
-a.case:hover
-{
-	opacity:.8;
 }
 .large
 {
