@@ -42,7 +42,7 @@ h1
 }
 h2
 {
-	margin:10px 0 20px -2vw;
+	margin:10px 0 20px 0;
 }
 /**
  * Layout
@@ -157,6 +157,7 @@ h2
 .page.visible
 {
 	z-index:1;
+	position:relative;
 	opacity:1;
 	visibility:visible;
 	transition:opacity .17s ease-in-out,visibility 0s ease 0s;
@@ -164,4 +165,41 @@ h2
 .block
 {
 	margin:40px 0 70px 6vw;
+}
+.case-table
+{
+	width:100%;
+	padding:120px 0 60px 0;
+	text-align:center;
+}
+.case
+{
+	display:inline-block;
+	vertical-align:top;
+	width:35%;
+	min-width:190px;
+	margin:14px;
+	background:#ececec;
+	box-shadow:0 0 1px #cccccc;
+}
+.large
+{
+	width:70%;
+	min-width:350px;
+	margin:18px 0;
+}
+.big-center
+{
+	overflow:hidden;
+	position:relative;
+	padding:0 0 30% 0;
+}
+.big-center > *
+{
+	position:absolute;
+	top:-9999px;
+	right:-9999px;
+	bottom:-9999px;
+	left:-9999px;
+	margin:auto;
 }
