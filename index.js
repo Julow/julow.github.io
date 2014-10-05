@@ -19,9 +19,7 @@ function JulooCanvas(canvas)
 }
 JulooCanvas.prototype.checkSize = function()
 {
-	var e = doc.documentElement;
-	this.canvas.height = 0;
-	this.canvas.height = Math.max(e.clientHeight, e.scrollHeight);
+	this.canvas.height = doc.getElementById("right-part").offsetHeight;
 	this.render();
 };
 JulooCanvas.prototype.setColor = function(c)
@@ -154,6 +152,7 @@ function showPage(pageName)
 	style.innerHTML = repl(innerStyle, {"color": page.color});
 	currPage = page;
 	page.setVisible(true);
+	canvas.checkSize();
 }
 
 if (pageMap[win.location.hash])
