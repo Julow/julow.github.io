@@ -47,7 +47,7 @@ JulooCanvas.prototype.render = function()
 	this.context.lineTo(x5, 0);
 	this.context.lineTo(this.x, 0);
 	this.context.fill();
-	this.context.fillRect(0, 35, x5, 75);
+	this.context.fillRect(0, 35, x5, 150);
 	this.context.font = "bold 70px Arial,sans-serif";
 	this.context.textAlign = "center";
 	this.context.fillStyle = "#e9e9e9";
@@ -161,12 +161,16 @@ else
 
 function getMargin(pos)
 {
-	var n = pos / 512;
-	return Math.round(n * (10 - n));
+	var n = pos / 224;
+	return Math.round(n * (20 - n) * 10) / 10;
 }
-
+var nextMouseMove = 0;
 doc.addEventListener("mousemove", function(e)
 {
+	var now = performance.now();
+	if (nextMouseMove > now)
+		return;
+	nextMouseMove = (now | 0) + 25;
 	var marginX = getMargin(e.clientX);
 	var marginY = -getMargin(e.clientY);
 	doc.body.style.marginLeft = marginX + "px";
