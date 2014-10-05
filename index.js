@@ -66,7 +66,6 @@ var canvas = new JulooCanvas(doc.getElementById("canvas"));
 	canvas.render();
 })();
 
-
 function repl(str, map)
 {
 	return str.replace(/\{\{([^\}]+)\}\}/g, function(match, p1)
@@ -74,7 +73,6 @@ function repl(str, map)
 		return map[p1] || match;
 	});
 }
-
 
 function animation(duration, callback)
 {
@@ -89,11 +87,8 @@ function animation(duration, callback)
 }
 function animationValue(progress, start, end)
 {
-	if (start > end)
-		return start - ((start - end) * progress);
-	return (end - start) * progress + start;
+	return (start > end)? start - ((start - end) * progress) : (end - start) * progress + start;
 }
-
 
 function hexToRgb(hex)
 {
@@ -110,7 +105,6 @@ function rgbToHex(r, g, b)
 	return "#" + (0x01000000 + (r << 16) + (g << 8) + b).toString(16).substr(1, 6);
 }
 
-
 function Page(id, color)
 {
 	this.element = doc.getElementById(id);
@@ -118,12 +112,8 @@ function Page(id, color)
 }
 Page.prototype.setVisible = function(visible)
 {
-	if (visible)
-		this.element.className = this.element.className + " visible";
-	else
-		this.element.className = this.element.className.replace(/ *visible *|  +/g, " ");
+	this.element.className = (visible)? this.element.className + " visible" : this.element.className.replace(/ *visible *|  +/g, " ");
 };
-
 
 var pageMap = {
 	"#main":				new Page("page-main", "#188386"),
@@ -163,18 +153,17 @@ function showPage(pageName)
 	currPage = page;
 	page.setVisible(true);
 }
+
 if (pageMap[win.location.hash])
 	showPage(win.location.hash);
 else
 	showPage(Object.keys(pageMap)[0]);
-
 
 function getMargin(pos)
 {
 	var n = pos / 512;
 	return Math.round(n * (10 - n));
 }
-
 
 doc.addEventListener("mousemove", function(e)
 {
@@ -186,7 +175,6 @@ doc.addEventListener("mousemove", function(e)
 	canvas.titleY = 90 - marginY;
 	canvas.render();
 }, false);
-
 
 win.addEventListener("hashchange", function()
 {
