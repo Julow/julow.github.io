@@ -178,15 +178,15 @@ h2
 	vertical-align:top;
 	width:35%;
 	min-width:190px;
-	margin:14px;
+	margin:12px 2%;
 	background:#ececec;
 	box-shadow:0 0 1px #cccccc;
 }
 .large
 {
-	width:70%;
+	width:74%;
 	min-width:350px;
-	margin:18px 0;
+	margin:24px 0;
 }
 .big-center
 {

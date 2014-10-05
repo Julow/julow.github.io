@@ -129,9 +129,7 @@ var pageMap = {
 	"#main":				new Page("page-main", "#188386"),
 	"#uumatter":			new Page("page-uumatter", "#6a2f6a"),
 	"#tapwell":				new Page("page-tapwell", "#927020"),
-	"#leaf":				new Page("page-leaf", "#258023"),
-	"#stop-flash":			new Page("page-stop-flash", "#8c322b"),
-	"#kikoo":				new Page("page-kikoo", "#7c5231")
+	"#leaf":				new Page("page-leaf", "#258023")
 };
 var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
