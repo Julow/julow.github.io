@@ -3,13 +3,14 @@
 function JulooCanvas(canvas)
 {
 	this.canvas = canvas;
-	this.context = canvas.getContext('2d');
+	this.context = canvas.getContext("2d");
 
-	this.color = "#606459";
+	this.cacheCanvas = doc.createElement("canvas");
+	this.cacheContext = this.cacheCanvas.getContext("2d");
 
-	this.x = canvas.width / 2;
-	this.offsetY = 9;
-	this.pointsX = [];
+	this.color = "rgba(0,0,0,0)";
+
+	this.x = this.canvas.width / 2;
 
 	this.titleX = 170;
 	this.titleY = 90;
@@ -30,24 +31,24 @@ JulooCanvas.prototype.setColor = function(c)
 }
 JulooCanvas.prototype.regen = function()
 {
-	this.pointsX = [];
-	for (var y = 0; y < this.canvas.height; y += this.offsetY)
-		this.pointsX.push((Math.random() * 8 - 4 + this.x) | 0);
+	this.cacheCanvas.width = 0;
+	this.cacheCanvas.width = 10;
+	this.cacheCanvas.height = this.canvas.height;
+	this.cacheContext.fillStyle = this.color;
+	this.cacheContext.beginPath();
+	this.cacheContext.moveTo(5, 0);
+	for (var y = 0; y < this.canvas.height; y += 9)
+		this.cacheContext.lineTo(((Math.random() * 8) | 0) + 1, y);
+	this.cacheContext.lineTo(0, this.canvas.height);
+	this.cacheContext.lineTo(0, 0);
+	this.cacheContext.lineTo(5, 0);
+	this.cacheContext.fill();
 };
 JulooCanvas.prototype.render = function()
 {
-	var x5 = this.x - 5;
-	this.context.fillStyle = this.color;
 	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	this.context.beginPath();
-	this.context.moveTo(this.x, 0);
-	for (var i = 0, y, diff; i < this.pointsX.length; ++i)
-		this.context.lineTo(this.pointsX[i], i * this.offsetY);
-	this.context.lineTo(x5, this.canvas.height);
-	this.context.lineTo(x5, 0);
-	this.context.lineTo(this.x, 0);
-	this.context.fill();
-	this.context.fillRect(0, 35, x5, 150);
+	this.context.drawImage(this.cacheCanvas, this.x - 5, 0);
+	this.context.fillRect(0, 35, this.x - 5, 150);
 	this.context.font = "bold 70px Arial,sans-serif";
 	this.context.textAlign = "center";
 	this.context.fillStyle = "#e9e9e9";
