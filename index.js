@@ -167,6 +167,7 @@ function getMargin(pos)
 	var n = pos / 224;
 	return Math.round(n * (20 - n) * 10) / 10;
 }
+var layout = doc.getElementById("layout");
 var nextMouseMove = 0;
 doc.addEventListener("mousemove", function(e)
 {
@@ -176,9 +177,9 @@ doc.addEventListener("mousemove", function(e)
 	nextMouseMove = (now | 0) + 25;
 	var marginX = getMargin(e.clientX);
 	var marginY = -getMargin(e.clientY);
-	doc.body.style.marginLeft = marginX + "px";
-	doc.body.style.marginTop = marginY + "px";
-	doc.body.style.paddingBottom = -marginY + "px";
+	layout.style.marginLeft = marginX + "px";
+	layout.style.marginTop = marginY + "px";
+	layout.style.paddingBottom = -marginY + "px";
 	canvas.titleX = canvas.initialTitleX - Math.round(marginX * 0.8);
 	canvas.titleY = canvas.initialTitleY - marginY;
 	canvas.render();
