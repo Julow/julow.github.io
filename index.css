@@ -11,14 +11,9 @@
 /**
  * Base styles
  */
-html
-{
-	height:100%;
-}
 body
 {
 	margin:0;
-	height:100%;
 	min-width:760px;
 	font-family:Arial, sans-serif;
 	font-size:0;
@@ -52,7 +47,7 @@ h2
 	position:relative;
 	display:inline-block;
 	vertical-align:top;
-	min-height:100%;
+	min-height:100vh;
 	font-size:16px;
 }
 /**

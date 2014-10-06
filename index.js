@@ -178,6 +178,7 @@ doc.addEventListener("mousemove", function(e)
 	var marginY = -getMargin(e.clientY);
 	doc.body.style.marginLeft = marginX + "px";
 	doc.body.style.marginTop = marginY + "px";
+	doc.body.style.paddingBottom = -marginY + "px";
 	canvas.titleX = canvas.initialTitleX - Math.round(marginX * 0.8);
 	canvas.titleY = canvas.initialTitleY - marginY;
 	canvas.render();
