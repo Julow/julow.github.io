@@ -127,7 +127,7 @@ var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
 var currPage = null;
 var innerStyle = "#right-part a{color:{{color}};}" +
-	".banner{box-shadow:0 0px 2px {{color}};border-bottom:1px solid {{color}};}";
+	".banner{box-shadow:0 0 2px {{color}};border-bottom:1px solid {{color}};}";
 
 function showPage(pageName)
 {
