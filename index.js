@@ -152,10 +152,7 @@ function setColor(color)
 }
 
 var pageMap = {
-	"#main":				new Page("page-main", "#188386"),
-	"#uumatter":			new Page("page-uumatter", "#6a2f6a"),
-	"#tapwell":				new Page("page-tapwell", "#927020"),
-	"#leaf":				new Page("page-leaf", "#258023")
+	"#main": new Page("page-main", "#188386")
 };
 var currPage = null;
 
