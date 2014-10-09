@@ -27,6 +27,9 @@ JulooCanvas.prototype.checkSize = function()
 JulooCanvas.prototype.setColor = function(c)
 {
 	this.color = c;
+	this.cacheContext.globalCompositeOperation = "source-atop";
+	this.cacheContext.fillStyle = c;
+	this.cacheContext.fillRect(0, 0, this.cacheCanvas.width, this.cacheCanvas.height);
 	this.render();
 }
 JulooCanvas.prototype.regen = function()
@@ -34,6 +37,7 @@ JulooCanvas.prototype.regen = function()
 	this.cacheCanvas.width = 0;
 	this.cacheCanvas.width = 10;
 	this.cacheCanvas.height = this.canvas.height;
+	this.cacheContext.globalCompositeOperation = "destination-over";
 	this.cacheContext.fillStyle = this.color;
 	this.cacheContext.beginPath();
 	this.cacheContext.moveTo(5, 0);
@@ -198,11 +202,10 @@ doc.addEventListener("mousemove", function(e)
 
 doc.addEventListener("mouseout", function(e)
 {
-	var fromColor = e.fromElement.getAttribute("data-bgcolor");
-	var toColor = e.toElement && e.toElement.getAttribute("data-bgcolor");
+	var toColor = e.relatedTarget && e.relatedTarget.getAttribute("data-bgcolor");
 	if (toColor)
 		setColor(toColor);
-	else if (fromColor)
+	else if (e.target.getAttribute("data-bgcolor"))
 		setColor(currPage.color);
 }, false);
 
