@@ -117,17 +117,43 @@ Page.prototype.setVisible = function(visible)
 	this.element.className = (visible)? this.element.className + " visible" : this.element.className.replace(/ *visible *|  +/g, " ");
 };
 
+var style = doc.createElement("style");
+doc.getElementsByTagName("head")[0].appendChild(style);
+var currColor = null;
+var innerStyle = "#right-part a{color:{{color}};}" +
+	".banner{box-shadow:0 0 2px {{color}};border-bottom:1px solid {{color}};}";
+
+function setColor(color)
+{
+	if (currColor && color === currColor)
+		return;
+	if (currColor)
+	{
+		var fromColor = hexToRgb(currColor);
+		var toColor = hexToRgb(color);
+		animation(270, function(p)
+		{
+			currColor = rgbToHex(animationValue(p, fromColor.r, toColor.r), animationValue(p, fromColor.g, toColor.g), animationValue(p, fromColor.b, toColor.b));
+			doc.body.style.backgroundColor = currColor;
+			canvas.setColor(currColor);
+		});
+	}
+	else
+	{
+		currColor = color;
+		doc.body.style.backgroundColor = color;
+		canvas.setColor(color);
+	}
+	style.innerHTML = repl(innerStyle, {"color": color});
+}
+
 var pageMap = {
 	"#main":				new Page("page-main", "#188386"),
 	"#uumatter":			new Page("page-uumatter", "#6a2f6a"),
 	"#tapwell":				new Page("page-tapwell", "#927020"),
 	"#leaf":				new Page("page-leaf", "#258023")
 };
-var style = doc.createElement("style");
-doc.getElementsByTagName("head")[0].appendChild(style);
 var currPage = null;
-var innerStyle = "#right-part a{color:{{color}};}" +
-	".banner{box-shadow:0 0 2px {{color}};border-bottom:1px solid {{color}};}";
 
 function showPage(pageName)
 {
@@ -135,23 +161,8 @@ function showPage(pageName)
 	if (!page)
 		return;
 	if (currPage)
-	{
-		var currColor = hexToRgb(currPage.color);
-		var toColor = hexToRgb(page.color);
-		animation(270, function(p)
-		{
-			var color = rgbToHex(animationValue(p, currColor.r, toColor.r), animationValue(p, currColor.g, toColor.g), animationValue(p, currColor.b, toColor.b));
-			doc.body.style.backgroundColor = color;
-			canvas.setColor(color);
-		});
 		currPage.setVisible(false);
-	}
-	else
-	{
-		doc.body.style.backgroundColor = page.color;
-		canvas.setColor(page.color);
-	}
-	style.innerHTML = repl(innerStyle, {"color": page.color});
+	setColor(page.color);
 	currPage = page;
 	page.setVisible(true);
 	canvas.checkSize();
@@ -183,6 +194,16 @@ doc.addEventListener("mousemove", function(e)
 	canvas.titleX = canvas.initialTitleX - Math.round(marginX * 0.8);
 	canvas.titleY = canvas.initialTitleY - marginY;
 	canvas.render();
+}, false);
+
+doc.addEventListener("mouseout", function(e)
+{
+	var fromColor = e.fromElement.getAttribute("data-bgcolor");
+	var toColor = e.toElement && e.toElement.getAttribute("data-bgcolor");
+	if (toColor)
+		setColor(toColor);
+	else if (fromColor)
+		setColor(currPage.color);
 }, false);
 
 win.addEventListener("hashchange", function()
