@@ -83,28 +83,35 @@ function repl(str, map)
 function Animation(duration, frame)
 {
 	this.progress = 0;
+	this.startTime = Date.now();
+	this.duration = duration;
 	this.ended = false;
 
 	var self = this;
-	var startTime = performance.now();
+	var startTime = Date.now();
 	animFrame(function animUpdate()
 	{
 		if (self.ended)
 			return;
-		var p = (performance.now() - startTime) / duration;
-		if (p < 1)
-		{
-			animFrame(animUpdate);
-			self.progress = (p - 2) * -p;
-		}
-		else
-		{
-			self.progress = 1;
-			self.ended = true;
-		}
+		self.update();
+		animFrame(animUpdate);
 		frame();
 	});
 }
+Animation.prototype.update = function()
+{
+	var p = Date.now() - this.startTime;
+	if (p < this.duration)
+	{
+		p /= this.duration;
+		this.progress = (2 - p) * p;
+	}
+	else
+	{
+		this.progress = 1;
+		this.ended = true;
+	}
+};
 Animation.prototype.value = function(start, end)
 {
 	return (start > end)? start - ((start - end) * this.progress) : (end - start) * this.progress + start;
@@ -136,19 +143,22 @@ function Page(id, color)
 }
 Page.prototype.setVisible = function(visible)
 {
-	this.element.className = (visible)? this.element.className + " visible" : this.element.className.replace(/ *visible *|  +/g, " ");
+	this.element.className = (visible)? this.element.className + " visible" : this.element.className.replace("visible", "");
 };
 
 var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
 var currColor = null;
+var animColor = null;
 var lastAnim = null;
-var innerStyle = "#right-part a{color:{{color}};}" +
-	".banner{box-shadow:0 0 2px {{color}};border-bottom:1px solid {{color}};}";
+var innerStyle = "::selection{background:{{c}};text-shadow:none;}" +
+	"::-moz-selection{background:{{c}};text-shadow:none;}" +
+	"#right-part a{color:{{c}};}" +
+	".banner{box-shadow:0 0 2px {{c}};border-bottom:1px solid {{c}};}";
 
 function setColor(color)
 {
-	if (currColor && color === currColor)
+	if (currColor && (color === currColor || color === animColor))
 		return;
 	if (currColor)
 	{
@@ -162,6 +172,7 @@ function setColor(color)
 			doc.body.style.backgroundColor = currColor;
 			canvas.setColor(currColor);
 		});
+		animColor = color;
 	}
 	else
 	{
@@ -169,7 +180,7 @@ function setColor(color)
 		doc.body.style.backgroundColor = color;
 		canvas.setColor(color);
 	}
-	style.innerHTML = repl(innerStyle, {"color": color});
+	style.innerHTML = repl(innerStyle, {"c": color});
 }
 
 var pageMap = {
@@ -204,10 +215,10 @@ var layout = doc.getElementById("layout");
 var nextMouseMove = 0;
 doc.addEventListener("mousemove", function(e)
 {
-	var now = performance.now();
-	if (nextMouseMove > now)
+	var n = Date.now();
+	if (nextMouseMove > n)
 		return;
-	nextMouseMove = (now | 0) + 25;
+	nextMouseMove = (n | 0) + 25;
 	var marginX = getMargin(e.clientX);
 	var marginY = -getMargin(e.clientY);
 	layout.style.marginLeft = marginX + "px";
@@ -220,7 +231,7 @@ doc.addEventListener("mousemove", function(e)
 
 function getAttribute(element, attribute)
 {
-	while (element && element.getAttribute)
+	while (element && element.nodeName != doc.nodeName)
 	{
 		var data = element.getAttribute(attribute);
 		if (data)

@@ -1,13 +1,3 @@
-::selection
-{
-	background:orange;
-	text-shadow:none;
-}
-::-moz-selection
-{
-	background:orange;
-	text-shadow:none;
-}
 /**
  * Base styles
  */
@@ -198,11 +188,17 @@ h2
 .big-center img
 {
 	position:absolute;
+	height:100%;
 	top:-9999px;
 	right:-9999px;
 	bottom:-9999px;
 	left:-9999px;
 	margin:auto;
+}
+.big-center.large img
+{
+	width:100%;
+	height:auto;
 }
 .type
 {
