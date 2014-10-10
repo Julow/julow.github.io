@@ -1,4 +1,4 @@
-(function(doc, win){
+(function(doc, win, animFrame){
 
 function JulooCanvas(canvas)
 {
@@ -65,12 +65,12 @@ JulooCanvas.prototype.render = function()
 };
 
 var canvas = new JulooCanvas(doc.getElementById("canvas"));
-setTimeout(function updateLoop()
+animFrame(function updateLoop()
 {
 	setTimeout(updateLoop, 200);
 	canvas.regen();
 	canvas.render();
-}, 50);
+});
 
 function repl(str, map)
 {
@@ -80,21 +80,39 @@ function repl(str, map)
 	});
 }
 
-function animation(duration, callback)
+function Animation(duration, frame)
 {
+	this.progress = 0;
+	this.ended = false;
+
+	var self = this;
 	var startTime = performance.now();
-	(function animUpdate()
+	animFrame(function animUpdate()
 	{
-		var progress = (performance.now() - startTime) / duration;
-		if (progress < 1)
-			requestAnimationFrame(animUpdate);
-		callback((progress > 1)? 1 : (progress - 2) * -progress);
-	})();
+		if (self.ended)
+			return;
+		var p = (performance.now() - startTime) / duration;
+		if (p < 1)
+		{
+			animFrame(animUpdate);
+			self.progress = (p - 2) * -p;
+		}
+		else
+		{
+			self.progress = 1;
+			self.ended = true;
+		}
+		frame();
+	});
 }
-function animationValue(progress, start, end)
+Animation.prototype.value = function(start, end)
 {
-	return (start > end)? start - ((start - end) * progress) : (end - start) * progress + start;
-}
+	return (start > end)? start - ((start - end) * this.progress) : (end - start) * this.progress + start;
+};
+Animation.prototype.stop = function()
+{
+	this.ended = true;
+};
 
 function hexToRgb(hex)
 {
@@ -124,6 +142,7 @@ Page.prototype.setVisible = function(visible)
 var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
 var currColor = null;
+var lastAnim = null;
 var innerStyle = "#right-part a{color:{{color}};}" +
 	".banner{box-shadow:0 0 2px {{color}};border-bottom:1px solid {{color}};}";
 
@@ -135,9 +154,11 @@ function setColor(color)
 	{
 		var fromColor = hexToRgb(currColor);
 		var toColor = hexToRgb(color);
-		animation(270, function(p)
+		if (lastAnim)
+			lastAnim.stop();
+		lastAnim = new Animation(270, function()
 		{
-			currColor = rgbToHex(animationValue(p, fromColor.r, toColor.r), animationValue(p, fromColor.g, toColor.g), animationValue(p, fromColor.b, toColor.b));
+			currColor = rgbToHex(lastAnim.value(fromColor.r, toColor.r), lastAnim.value(fromColor.g, toColor.g), lastAnim.value(fromColor.b, toColor.b));
 			doc.body.style.backgroundColor = currColor;
 			canvas.setColor(currColor);
 		});
@@ -211,11 +232,7 @@ function getAttribute(element, attribute)
 
 doc.addEventListener("mouseout", function(e)
 {
-	var toColor = getAttribute(e.relatedTarget, "data-bgcolor");
-	if (toColor)
-		setColor(toColor);
-	else
-		setColor(currPage.color);
+	setColor(getAttribute(e.relatedTarget, "data-bgcolor") || currPage.color);
 }, false);
 
 win.addEventListener("hashchange", function()
@@ -227,4 +244,4 @@ win.addEventListener("resize", function()
 	canvas.checkSize();
 }, false);
 
-})(document, window);
+})(document, window, requestAnimationFrame || function(c){setTimeout(c, 20);});
