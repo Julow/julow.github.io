@@ -77,22 +77,19 @@ h2
 	right:-155px;
 }
 /**
- * - - Text
+ * - - Icons
  */
-#left-part a
+.left-block
 {
-	text-decoration:none;
-	color:#e9e9e9;
+	margin:24px 2vw 24px 0;
 }
-#left-part a:hover
+.icon
 {
-	color:#f9f9f9;
-}
-#left-part p
-{
-	margin:10px 2vw 10px 0;
-	text-shadow:0 0 1px rgba(0, 0, 0, 0.15);
-	color:#e9e9e9;
+	display:inline-block;
+	width:24px;
+	height:24px;
+	margin:0 2px 0 2px;
+	background-image:url("social_icons.png");
 }
 /**
  * - Right part
