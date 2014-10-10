@@ -197,12 +197,24 @@ doc.addEventListener("mousemove", function(e)
 	canvas.render();
 }, false);
 
+function getAttribute(element, attribute)
+{
+	while (element && element.getAttribute)
+	{
+		var data = element.getAttribute(attribute);
+		if (data)
+			return data;
+		element = element.parentNode;
+	}
+	return null;
+}
+
 doc.addEventListener("mouseout", function(e)
 {
-	var toColor = e.relatedTarget && e.relatedTarget.getAttribute("data-bgcolor");
+	var toColor = getAttribute(e.relatedTarget, "data-bgcolor");
 	if (toColor)
 		setColor(toColor);
-	else if (e.target.getAttribute("data-bgcolor"))
+	else
 		setColor(currPage.color);
 }, false);
 
