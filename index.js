@@ -1,6 +1,6 @@
 (function(doc, win, animFrame){
 
-function JulooCanvas(canvas)
+var JulooCanvas = fus(function(canvas)
 {
 	this.canvas = canvas;
 	this.context = canvas.getContext("2d");
@@ -18,51 +18,52 @@ function JulooCanvas(canvas)
 	this.titleY = this.initialTitleY;
 
 	this.checkSize();
-}
-JulooCanvas.prototype.checkSize = function()
-{
-	this.canvas.height = doc.getElementById("right-part").offsetHeight;
-	this.render();
-};
-JulooCanvas.prototype.setColor = function(c)
-{
-	this.color = c;
-	this.cacheContext.globalCompositeOperation = "source-atop";
-	this.cacheContext.fillStyle = c;
-	this.cacheContext.fillRect(0, 0, this.cacheCanvas.width, this.cacheCanvas.height);
-	this.render();
-}
-JulooCanvas.prototype.regen = function()
-{
-	this.cacheCanvas.width = 0;
-	this.cacheCanvas.width = 10;
-	this.cacheCanvas.height = this.canvas.height;
-	this.cacheContext.globalCompositeOperation = "destination-over";
-	this.cacheContext.fillStyle = this.color;
-	this.cacheContext.beginPath();
-	this.cacheContext.moveTo(5, 0);
-	for (var y = 0; y < this.canvas.height; y += 9)
-		this.cacheContext.lineTo(((Math.random() * 8) | 0) + 1, y);
-	this.cacheContext.lineTo(0, this.canvas.height);
-	this.cacheContext.lineTo(0, 0);
-	this.cacheContext.lineTo(5, 0);
-	this.cacheContext.fill();
-};
-JulooCanvas.prototype.render = function()
-{
-	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	this.context.drawImage(this.cacheCanvas, this.x - 5, 0);
-	this.context.fillStyle = this.color;
-	this.context.fillRect(0, 35, this.x - 5, 150);
-	this.context.font = "bold 70px Arial,sans-serif";
-	this.context.textAlign = "center";
-	this.context.fillStyle = "#e9e9e9";
-	this.context.globalCompositeOperation = "source-atop";
-	this.context.fillText("JULOO", this.titleX, this.titleY);
-	this.context.fillStyle = this.color;
-	this.context.globalCompositeOperation = "destination-over";
-	this.context.fillText("JULOO", this.titleX, this.titleY);
-};
+}, {
+	checkSize: function()
+	{
+		this.canvas.height = doc.getElementById("right-part").offsetHeight;
+		this.render();
+	},
+	setColor: function(c)
+	{
+		this.color = c;
+		this.cacheContext.globalCompositeOperation = "source-atop";
+		this.cacheContext.fillStyle = c;
+		this.cacheContext.fillRect(0, 0, this.cacheCanvas.width, this.cacheCanvas.height);
+		this.render();
+	},
+	regen: function()
+	{
+		this.cacheCanvas.width = 0;
+		this.cacheCanvas.width = 10;
+		this.cacheCanvas.height = this.canvas.height;
+		this.cacheContext.globalCompositeOperation = "destination-over";
+		this.cacheContext.fillStyle = this.color;
+		this.cacheContext.beginPath();
+		this.cacheContext.moveTo(5, 0);
+		for (var y = 0; y < this.canvas.height; y += 9)
+			this.cacheContext.lineTo(((Math.random() * 8) | 0) + 1, y);
+		this.cacheContext.lineTo(0, this.canvas.height);
+		this.cacheContext.lineTo(0, 0);
+		this.cacheContext.lineTo(5, 0);
+		this.cacheContext.fill();
+	},
+	render: function()
+	{
+		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.context.drawImage(this.cacheCanvas, this.x - 5, 0);
+		this.context.fillStyle = this.color;
+		this.context.fillRect(0, 35, this.x - 5, 150);
+		this.context.font = "bold 70px Arial,sans-serif";
+		this.context.textAlign = "center";
+		this.context.fillStyle = "#e9e9e9";
+		this.context.globalCompositeOperation = "source-atop";
+		this.context.fillText("JULOO", this.titleX, this.titleY);
+		this.context.fillStyle = this.color;
+		this.context.globalCompositeOperation = "destination-over";
+		this.context.fillText("JULOO", this.titleX, this.titleY);
+	}
+});
 
 var canvas = new JulooCanvas(doc.getElementById("canvas"));
 animFrame(function updateLoop()
@@ -80,7 +81,7 @@ function repl(str, map)
 	});
 }
 
-function Animation(duration, frame)
+var Animation = fus(function(duration, frame)
 {
 	this.progress = 0;
 	this.startTime = Date.now();
@@ -97,29 +98,30 @@ function Animation(duration, frame)
 		animFrame(animUpdate);
 		frame();
 	});
-}
-Animation.prototype.update = function()
-{
-	var p = Date.now() - this.startTime;
-	if (p < this.duration)
+}, {
+	update: function()
 	{
-		p /= this.duration;
-		this.progress = (2 - p) * p;
-	}
-	else
+		var p = Date.now() - this.startTime;
+		if (p < this.duration)
+		{
+			p /= this.duration;
+			this.progress = (2 - p) * p;
+		}
+		else
+		{
+			this.progress = 1;
+			this.ended = true;
+		}
+	},
+	value: function(start, end)
 	{
-		this.progress = 1;
+		return (start > end)? start - ((start - end) * this.progress) : (end - start) * this.progress + start;
+	},
+	stop: function()
+	{
 		this.ended = true;
 	}
-};
-Animation.prototype.value = function(start, end)
-{
-	return (start > end)? start - ((start - end) * this.progress) : (end - start) * this.progress + start;
-};
-Animation.prototype.stop = function()
-{
-	this.ended = true;
-};
+});
 
 function hexToRgb(hex)
 {
@@ -136,15 +138,16 @@ function rgbToHex(r, g, b)
 	return "#" + (0x01000000 + (r << 16) + (g << 8) + b).toString(16).substr(1, 6);
 }
 
-function Page(id, color)
+var Page = fus(function(id, color)
 {
 	this.element = doc.getElementById(id);
 	this.color = color;
-}
-Page.prototype.setVisible = function(visible)
-{
-	this.element.className = (visible)? this.element.className + " visible" : this.element.className.replace("visible", "");
-};
+}, {
+	setVisible: function(visible)
+	{
+		this.element.className = (visible)? this.element.className + " visible" : this.element.className.replace("visible", "");
+	}
+});
 
 var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
