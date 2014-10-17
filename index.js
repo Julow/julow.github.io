@@ -186,13 +186,14 @@ var CasePage = fus(function(id, color, json)
 			div.innerHTML += c.content || "";
 			if (c.links)
 			{
-				for (var href in c.links)
+				for (var j = 0; j < c.links.length; ++j)
 				{
+					var link = c.links[j];
 					var p = doc.createElement("p");
 					var a = doc.createElement("a");
-					a.href = href;
+					a.href = link.href;
 					a.target = "_blank";
-					a.innerHTML = c.links[href];
+					a.innerHTML = link.text;
 					p.appendChild(a);
 					div.appendChild(p);
 				}
@@ -281,9 +282,12 @@ var mainPageJSON = [
 		"title": "Fus 2",
 		"category": "js",
 		"content": "<p>OOP base.<br />Inline class creation and inheritance</p>",
-		"links": {
-			"https://github.com/Julow/Fus2": "Github repo"
-		},
+		"links": [
+			{
+				"href": "https://github.com/Julow/Fus2",
+				"text": "Github repo"
+			}
+		],
 		"labels": {
 			"version": "v2.0",
 			"type": "Javascript"
@@ -293,9 +297,12 @@ var mainPageJSON = [
 		"title": "Color.js",
 		"category": "js",
 		"content": "<p>Parse/Convert/Format colors.<br />Hex, RGB, HSL, int...</p>",
-		"links": {
-			"https://github.com/Julow/Color.js": "Github repo"
-		},
+		"links": [
+			{
+				"href": "https://github.com/Julow/Color.js",
+				"text": "Github repo"
+			}
+		],
 		"labels": {
 			"version": "v2.2.0",
 			"type": "Javascript"
@@ -318,9 +325,12 @@ var mainPageJSON = [
 		"title": "ColorHighlight",
 		"category": "sublime-text",
 		"content": "<img alt=\"color highlight\" src=\"https://raw.githubusercontent.com/Julow/JulooColorHighlight/master/captures/highlight-example.png\" style=\"max-width:100%;\" /><p>Highlight colors in code<br />&amp; color conversion commands.</p>",
-		"links": {
-			"https://github.com/Julow/JulooColorHighlight": "Github repo"
-		},
+		"links": [
+			{
+				"href": "https://github.com/Julow/JulooColorHighlight",
+				"text": "Github repo"
+			}
+		],
 		"labels": {
 			"type": "Sublime Text plugin"
 		}
@@ -329,9 +339,12 @@ var mainPageJSON = [
 		"title": "LayoutSpliter",
 		"category": "sublime-text",
 		"content": "<img alt=\"layout spliter\" src=\"https://raw.githubusercontent.com/Julow/LayoutSpliter/master/captures/commands.png\" style=\"max-width:100%;\" /><p>Split layout as you want.<br /><i>No limit !</i></p>",
-		"links": {
-			"https://github.com/Julow/LayoutSpliter": "Github repo"
-		},
+		"links": [
+			{
+				"href": "https://github.com/Julow/LayoutSpliter",
+				"text": "Github repo"
+			}
+		],
 		"labels": {
 			"version": "v1.1.0",
 			"type": "Sublime Text plugin"
@@ -354,10 +367,16 @@ var mainPageJSON = [
 		"title": "LanguageInjector",
 		"category": "sublime-text",
 		"content": "<p>Inject native language regex.</p>",
-		"links": {
-			"https://sublime.wbond.net/packages/LanguageInjector": "Package Control page",
-			"https://github.com/Julow/LanguageInjector": "Github repo"
-		},
+		"links": [
+			{
+				"href": "https://sublime.wbond.net/packages/LanguageInjector",
+				"text": "Package Control page"
+			},
+			{
+				"href": "https://github.com/Julow/LanguageInjector",
+				"text": "Github repo"
+			}
+		],
 		"labels": {
 			"version": "v1.1.1",
 			"type": "Sublime Text plugin"
@@ -378,10 +397,16 @@ var mainPageJSON = [
 	{
 		"title": "StopFlash",
 		"category": "chrome",
-		"links": {
-			"https://chrome.google.com/webstore/detail/stopflash-flash-blocker/oiiohfpnbijbgdidjfcpcljcfbmkaooi": "Chrome Webstore page",
-			"https://github.com/Julow/StopFlash": "Github repo",
-		},
+		"links": [
+			{
+				"href": "https://chrome.google.com/webstore/detail/stopflash-flash-blocker/oiiohfpnbijbgdidjfcpcljcfbmkaooi",
+				"text": "Chrome Webstore page"
+			},
+			{
+				"href": "https://github.com/Julow/StopFlash",
+				"text": "Github repo"
+			}
+		],
 		"labels": {
 			"type": "Chrome Extensions"
 		}
@@ -389,10 +414,16 @@ var mainPageJSON = [
 	{
 		"title": "Kikoo!",
 		"category": "chrome",
-		"links": {
-			"https://chrome.google.com/webstore/detail/kikoo/bplbefadcjgjpihpgndelkalllpgfnke": "Chrome Webstore page",
-			"https://github.com/Julow/Kikoo": "Github repo"
-		},
+		"links": [
+			{
+				"href": "https://chrome.google.com/webstore/detail/kikoo/bplbefadcjgjpihpgndelkalllpgfnke",
+				"text": "Chrome Webstore page"
+			},
+			{
+				"href": "https://github.com/Julow/Kikoo",
+				"text": "Github repo"
+			}
+		],
 		"labels": {
 			"type": "Chrome Extensions"
 		}
