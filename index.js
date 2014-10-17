@@ -149,6 +149,87 @@ var Page = fus(function(id, color)
 	}
 });
 
+var CasePage = fus(function(id, color, json)
+{
+	CasePage.super(this)(id, color);
+	this.cases = [];
+	if (this.element.className.indexOf("case-table") < 0)
+		this.element.className += " case-table";
+	for (var i = 0; i < json.length; ++i)
+	{
+		var c = json[i];
+		var div = doc.createElement("div");
+		if (c.type === "image")
+		{
+			div.className = "case big-center" + (c.large? " large" : "");
+			var img = doc.createElement("img");
+			img.src = c.img;
+			if (c.link)
+			{
+				var link = doc.createElement("a");
+				link.href = c.link;
+				link.target = "_blank";
+				link.appendChild(img);
+				div.appendChild(link);
+			}
+			else
+				div.appendChild(img);
+		}
+		else
+		{
+			div.className = "case";
+			if (c.title)
+			{
+				var title = doc.createElement("h2");
+				title.innerHTML = c.title;
+				div.appendChild(title);
+			}
+			div.innerHTML += c.content || "";
+			if (c.links)
+			{
+				for (var href in c.links)
+				{
+					var p = doc.createElement("p");
+					var a = doc.createElement("a");
+					a.href = href;
+					a.target = "_blank";
+					a.innerHTML = c.links[href];
+					p.appendChild(a);
+					div.appendChild(p);
+				}
+			}
+		}
+		if (c.labels)
+		{
+			for (var l in c.labels)
+			{
+				var label = doc.createElement("div");
+				label.className = l;
+				label.innerHTML = c.labels[l];
+				div.appendChild(label);
+			}
+		}
+		if (c.data)
+		{
+			for (var data in c.data)
+				div.setAttribute("data-" + data, c.data[data]);
+		}
+		this.cases.push(div);
+	}
+}, {
+	setVisible: function(visible)
+	{
+		for (var i = 0; i < this.cases.length; ++i)
+		{
+			if (visible)
+				this.element.appendChild(this.cases[i]);
+			else
+				this.element.removeChild(this.cases[i]);
+		}
+		CasePage.super(this, "setVisible")(visible);
+	}
+}, Page);
+
 var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
 var currColor = null;
@@ -187,7 +268,118 @@ function setColor(color)
 }
 
 var pageMap = {
-	"#main": new Page("page-main", "#188386")
+	"#main": new CasePage("page-main", "#188386", [
+		{
+			"title": "Fus 2",
+			"content": "<p>OOP base.<br />Inline class creation and inheritance</p>",
+			"links": {
+				"https://github.com/Julow/Fus2": "Github repo"
+			},
+			"labels": {
+				"version": "v2.0",
+				"type": "Javascript"
+			}
+		},
+		{
+			"title": "Color.js",
+			"content": "<p>Parse/Convert/Format colors.<br />Hex, RGB, HSL, int...</p>",
+			"links": {
+				"https://github.com/Julow/Color.js": "Github repo"
+			},
+			"labels": {
+				"version": "v2.2.0",
+				"type": "Javascript"
+			}
+		},
+		{
+			"type": "image",
+			"large": true,
+			"link": "https://play.google.com/store/apps/details?id=fr.juloo.leaf",
+			"img": "images/leaf-banner.png",
+			"labels": {
+				"type": "Android Game"
+			},
+			"data": {
+				"bgcolor": "#258023"
+			}
+		},
+		{
+			"title": "ColorHighlight",
+			"content": "<img alt=\"color highlight\" src=\"https://raw.githubusercontent.com/Julow/JulooColorHighlight/master/captures/highlight-example.png\" style=\"max-width:100%;\" /><p>Highlight colors in code<br />&amp; color conversion commands.</p>",
+			"links": {
+				"https://github.com/Julow/JulooColorHighlight": "Github repo"
+			},
+			"labels": {
+				"type": "Sublime Text plugin"
+			}
+		},
+		{
+			"title": "LayoutSpliter",
+			"content": "<img alt=\"layout spliter\" src=\"https://raw.githubusercontent.com/Julow/LayoutSpliter/master/captures/commands.png\" style=\"max-width:100%;\" /><p>Split layout as you want.<br /><i>No limit !</i></p>",
+			"links": {
+				"https://github.com/Julow/LayoutSpliter": "Github repo"
+			},
+			"labels": {
+				"version": "v1.1.0",
+				"type": "Sublime Text plugin"
+			}
+		},
+		{
+			"type": "image",
+			"large": true,
+			"link": "https://play.google.com/store/apps/details?id=fr.juloo.uumatter",
+			"img": "images/uumatter-banner.png",
+			"labels": {
+				"type": "Android Game"
+			},
+			"data": {
+				"bgcolor": "#6a2f6a"
+			}
+		},
+		{
+			"title": "LanguageInjector",
+			"content": "<p>Inject native language regex.</p>",
+			"links": {
+				"https://sublime.wbond.net/packages/LanguageInjector": "Package Control page",
+				"https://github.com/Julow/LanguageInjector": "Github repo"
+			},
+			"labels": {
+				"version": "v1.1.1",
+				"type": "Sublime Text plugin"
+			}
+		},
+		{
+			"type": "image",
+			"link": "https://play.google.com/store/apps/details?id=fr.juloo.tapwell",
+			"img": "images/tapwell-banner.png",
+			"labels": {
+				"type": "Android Game"
+			},
+			"data": {
+				"bgcolor": "#927020"
+			}
+		},
+		{
+			"title": "StopFlash",
+			"links": {
+				"https://chrome.google.com/webstore/detail/stopflash-flash-blocker/oiiohfpnbijbgdidjfcpcljcfbmkaooi": "Chrome Webstore page",
+				"https://github.com/Julow/StopFlash": "Github repo",
+			},
+			"labels": {
+				"type": "Chrome Extension"
+			}
+		},
+		{
+			"title": "Kikoo!",
+			"links": {
+				"https://chrome.google.com/webstore/detail/kikoo/bplbefadcjgjpihpgndelkalllpgfnke": "Chrome Webstore page",
+				"https://github.com/Julow/Kikoo": "Github repo"
+			},
+			"labels": {
+				"type": "Chrome Extension"
+			}
+		}
+	])
 };
 var currPage = null;
 
