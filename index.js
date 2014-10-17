@@ -89,7 +89,6 @@ var Animation = fus(function(duration, frame)
 	this.ended = false;
 
 	var self = this;
-	var startTime = Date.now();
 	animFrame(function animUpdate()
 	{
 		if (self.ended)
@@ -205,7 +204,17 @@ var CasePage = fus(function(id, color, json)
 			{
 				var label = doc.createElement("div");
 				label.className = l;
-				label.innerHTML = c.labels[l];
+				if (c.category && l === "type")
+				{
+					var a = doc.createElement("a");
+					a.href = "#" + c.category;
+					a.innerHTML = c.labels[l];
+					label.appendChild(a);
+				}
+				else
+				{
+					label.innerHTML = c.labels[l];
+				}
 				div.appendChild(label);
 			}
 		}
@@ -267,119 +276,146 @@ function setColor(color)
 	style.innerHTML = repl(innerStyle, {"c": color});
 }
 
-var pageMap = {
-	"#main": new CasePage("page-main", "#188386", [
-		{
-			"title": "Fus 2",
-			"content": "<p>OOP base.<br />Inline class creation and inheritance</p>",
-			"links": {
-				"https://github.com/Julow/Fus2": "Github repo"
-			},
-			"labels": {
-				"version": "v2.0",
-				"type": "Javascript"
-			}
+var mainPageJSON = [
+	{
+		"title": "Fus 2",
+		"category": "js",
+		"content": "<p>OOP base.<br />Inline class creation and inheritance</p>",
+		"links": {
+			"https://github.com/Julow/Fus2": "Github repo"
 		},
-		{
-			"title": "Color.js",
-			"content": "<p>Parse/Convert/Format colors.<br />Hex, RGB, HSL, int...</p>",
-			"links": {
-				"https://github.com/Julow/Color.js": "Github repo"
-			},
-			"labels": {
-				"version": "v2.2.0",
-				"type": "Javascript"
-			}
-		},
-		{
-			"type": "image",
-			"large": true,
-			"link": "https://play.google.com/store/apps/details?id=fr.juloo.leaf",
-			"img": "images/leaf-banner.png",
-			"labels": {
-				"type": "Android Game"
-			},
-			"data": {
-				"bgcolor": "#258023"
-			}
-		},
-		{
-			"title": "ColorHighlight",
-			"content": "<img alt=\"color highlight\" src=\"https://raw.githubusercontent.com/Julow/JulooColorHighlight/master/captures/highlight-example.png\" style=\"max-width:100%;\" /><p>Highlight colors in code<br />&amp; color conversion commands.</p>",
-			"links": {
-				"https://github.com/Julow/JulooColorHighlight": "Github repo"
-			},
-			"labels": {
-				"type": "Sublime Text plugin"
-			}
-		},
-		{
-			"title": "LayoutSpliter",
-			"content": "<img alt=\"layout spliter\" src=\"https://raw.githubusercontent.com/Julow/LayoutSpliter/master/captures/commands.png\" style=\"max-width:100%;\" /><p>Split layout as you want.<br /><i>No limit !</i></p>",
-			"links": {
-				"https://github.com/Julow/LayoutSpliter": "Github repo"
-			},
-			"labels": {
-				"version": "v1.1.0",
-				"type": "Sublime Text plugin"
-			}
-		},
-		{
-			"type": "image",
-			"large": true,
-			"link": "https://play.google.com/store/apps/details?id=fr.juloo.uumatter",
-			"img": "images/uumatter-banner.png",
-			"labels": {
-				"type": "Android Game"
-			},
-			"data": {
-				"bgcolor": "#6a2f6a"
-			}
-		},
-		{
-			"title": "LanguageInjector",
-			"content": "<p>Inject native language regex.</p>",
-			"links": {
-				"https://sublime.wbond.net/packages/LanguageInjector": "Package Control page",
-				"https://github.com/Julow/LanguageInjector": "Github repo"
-			},
-			"labels": {
-				"version": "v1.1.1",
-				"type": "Sublime Text plugin"
-			}
-		},
-		{
-			"type": "image",
-			"link": "https://play.google.com/store/apps/details?id=fr.juloo.tapwell",
-			"img": "images/tapwell-banner.png",
-			"labels": {
-				"type": "Android Game"
-			},
-			"data": {
-				"bgcolor": "#927020"
-			}
-		},
-		{
-			"title": "StopFlash",
-			"links": {
-				"https://chrome.google.com/webstore/detail/stopflash-flash-blocker/oiiohfpnbijbgdidjfcpcljcfbmkaooi": "Chrome Webstore page",
-				"https://github.com/Julow/StopFlash": "Github repo",
-			},
-			"labels": {
-				"type": "Chrome Extension"
-			}
-		},
-		{
-			"title": "Kikoo!",
-			"links": {
-				"https://chrome.google.com/webstore/detail/kikoo/bplbefadcjgjpihpgndelkalllpgfnke": "Chrome Webstore page",
-				"https://github.com/Julow/Kikoo": "Github repo"
-			},
-			"labels": {
-				"type": "Chrome Extension"
-			}
+		"labels": {
+			"version": "v2.0",
+			"type": "Javascript"
 		}
-	])
+	},
+	{
+		"title": "Color.js",
+		"category": "js",
+		"content": "<p>Parse/Convert/Format colors.<br />Hex, RGB, HSL, int...</p>",
+		"links": {
+			"https://github.com/Julow/Color.js": "Github repo"
+		},
+		"labels": {
+			"version": "v2.2.0",
+			"type": "Javascript"
+		}
+	},
+	{
+		"category": "android",
+		"type": "image",
+		"large": true,
+		"link": "https://play.google.com/store/apps/details?id=fr.juloo.leaf",
+		"img": "images/leaf-banner.png",
+		"labels": {
+			"type": "Android Game"
+		},
+		"data": {
+			"bgcolor": "#258023"
+		}
+	},
+	{
+		"title": "ColorHighlight",
+		"category": "sublime-text",
+		"content": "<img alt=\"color highlight\" src=\"https://raw.githubusercontent.com/Julow/JulooColorHighlight/master/captures/highlight-example.png\" style=\"max-width:100%;\" /><p>Highlight colors in code<br />&amp; color conversion commands.</p>",
+		"links": {
+			"https://github.com/Julow/JulooColorHighlight": "Github repo"
+		},
+		"labels": {
+			"type": "Sublime Text plugin"
+		}
+	},
+	{
+		"title": "LayoutSpliter",
+		"category": "sublime-text",
+		"content": "<img alt=\"layout spliter\" src=\"https://raw.githubusercontent.com/Julow/LayoutSpliter/master/captures/commands.png\" style=\"max-width:100%;\" /><p>Split layout as you want.<br /><i>No limit !</i></p>",
+		"links": {
+			"https://github.com/Julow/LayoutSpliter": "Github repo"
+		},
+		"labels": {
+			"version": "v1.1.0",
+			"type": "Sublime Text plugin"
+		}
+	},
+	{
+		"category": "android",
+		"type": "image",
+		"large": true,
+		"link": "https://play.google.com/store/apps/details?id=fr.juloo.uumatter",
+		"img": "images/uumatter-banner.png",
+		"labels": {
+			"type": "Android Game"
+		},
+		"data": {
+			"bgcolor": "#6a2f6a"
+		}
+	},
+	{
+		"title": "LanguageInjector",
+		"category": "sublime-text",
+		"content": "<p>Inject native language regex.</p>",
+		"links": {
+			"https://sublime.wbond.net/packages/LanguageInjector": "Package Control page",
+			"https://github.com/Julow/LanguageInjector": "Github repo"
+		},
+		"labels": {
+			"version": "v1.1.1",
+			"type": "Sublime Text plugin"
+		}
+	},
+	{
+		"category": "android",
+		"type": "image",
+		"link": "https://play.google.com/store/apps/details?id=fr.juloo.tapwell",
+		"img": "images/tapwell-banner.png",
+		"labels": {
+			"type": "Android Game"
+		},
+		"data": {
+			"bgcolor": "#927020"
+		}
+	},
+	{
+		"title": "StopFlash",
+		"category": "chrome",
+		"links": {
+			"https://chrome.google.com/webstore/detail/stopflash-flash-blocker/oiiohfpnbijbgdidjfcpcljcfbmkaooi": "Chrome Webstore page",
+			"https://github.com/Julow/StopFlash": "Github repo",
+		},
+		"labels": {
+			"type": "Chrome Extensions"
+		}
+	},
+	{
+		"title": "Kikoo!",
+		"category": "chrome",
+		"links": {
+			"https://chrome.google.com/webstore/detail/kikoo/bplbefadcjgjpihpgndelkalllpgfnke": "Chrome Webstore page",
+			"https://github.com/Julow/Kikoo": "Github repo"
+		},
+		"labels": {
+			"type": "Chrome Extensions"
+		}
+	}
+];
+
+function getJSONCategory(cat)
+{
+	var data = [];
+	for (var i = 0; i < mainPageJSON.length; ++i)
+	{
+		if (mainPageJSON[i]["category"] === cat)
+			data.push(mainPageJSON[i]);
+	}
+	return data;
+}
+
+var pageMap = {
+	"#main": new CasePage("page-main", "#cea503", mainPageJSON),
+	"#android": new CasePage("page-android", "#698825", getJSONCategory("android")),
+	"#js": new CasePage("page-js", "#c96508", getJSONCategory("js")),
+	"#sublime-text": new CasePage("page-sublime-text", "#292929", getJSONCategory("sublime-text")),
+	"#chrome": new CasePage("page-chrome", "#188386", getJSONCategory("chrome")),
 };
 var currPage = null;
 
