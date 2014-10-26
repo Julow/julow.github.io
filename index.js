@@ -505,7 +505,9 @@ function getAttribute(element, attribute)
 
 doc.addEventListener("mouseout", function(e)
 {
-	setColor(getAttribute(e.relatedTarget, "data-bgcolor") || currPage.color);
+	var c = getAttribute(e.relatedTarget, "data-bgcolor") || currPage.color;
+	if (c != "none")
+		setColor(c);
 }, false);
 
 win.addEventListener("hashchange", function()
