@@ -136,6 +136,12 @@ function rgbToHex(r, g, b)
 {
 	return "#" + (0x01000000 + (r << 16) + (g << 8) + b).toString(16).substr(1, 6);
 }
+function colorDiff(c1, c2)
+{
+	return Math.max(c1.r, c2.r) - Math.min(c1.r, c2.r)
+		+ Math.max(c1.g, c2.g) - Math.min(c1.g, c2.g)
+		+ Math.max(c1.b, c2.b) - Math.min(c1.b, c2.b);
+}
 
 var Page = fus(function(id, color)
 {
@@ -249,8 +255,7 @@ var animColor = null;
 var lastAnim = null;
 var innerStyle = "::selection{background:{{c}};text-shadow:none;}" +
 	"::-moz-selection{background:{{c}};text-shadow:none;}" +
-	"#right-part a{color:{{c}};}" +
-	".banner{box-shadow:0 0 2px {{c}};border-bottom:1px solid {{c}};}";
+	"#right-part a{color:{{c}};}";
 
 function setColor(color)
 {
@@ -262,7 +267,7 @@ function setColor(color)
 		var toColor = hexToRgb(color);
 		if (lastAnim)
 			lastAnim.stop();
-		lastAnim = new Animation(270, function()
+		lastAnim = new Animation(colorDiff(fromColor, toColor) * 1.5, function()
 		{
 			currColor = rgbToHex(lastAnim.value(fromColor.r, toColor.r), lastAnim.value(fromColor.g, toColor.g), lastAnim.value(fromColor.b, toColor.b));
 			doc.body.style.backgroundColor = currColor;
@@ -490,7 +495,8 @@ else
 function getMargin(pos)
 {
 	var n = pos / 224;
-	return Math.round(n * (20 - n) * 10) / 10;
+	//return Math.round(n * (20 - n) * 10) / 10;
+	return Math.round(n * (20 - n));
 }
 var layout = doc.getElementById("layout");
 var nextMouseMove = 0;

@@ -104,6 +104,10 @@ h2
 	border-bottom-right-radius:8px;
 	box-shadow:1px 1px 1px rgba(34, 34, 34, 0.3);
 }
+#right-part a
+{
+	transition:color 0.6s;
+}
 #content
 {
 	overflow:hidden;
@@ -121,7 +125,7 @@ h2
 	top:0;
 	opacity:0;
 	visibility:hidden;
-	transition:opacity .2s ease-out,visibility 0s ease .2s;
+	transition:opacity 0.2s ease-out,visibility 0s ease 0.2s;
 }
 .page.visible
 {
@@ -163,7 +167,7 @@ h2
 	min-width:190px;
 	margin:12px 2%;
 	padding:4px 0 10px 0;
-	background:#ececec;
+	background:#f0f0f0;
 	box-shadow:0 0 1px #cccccc;
 	transition:box-shadow .3s ease,opacity .4s ease;
 }
