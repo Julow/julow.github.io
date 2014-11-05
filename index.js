@@ -160,7 +160,7 @@ var CasePage = fus(function(id, color, json)
 		var div = doc.createElement("div");
 		if (c.type === "image")
 		{
-			div.className = "case big-center" + (c.large? " large" : "");
+			div.className = "case big-center";
 			var img = doc.createElement("img");
 			img.src = c.img;
 			if (c.link)
@@ -199,6 +199,8 @@ var CasePage = fus(function(id, color, json)
 				}
 			}
 		}
+		if (c.large)
+			div.className += " large";
 		if (c.labels)
 		{
 			for (var l in c.labels)
@@ -278,6 +280,22 @@ function setColor(color)
 }
 
 var mainPageJSON = [
+	{
+		"title": "lslAbFh",
+		"large": true,
+		"category": "sh",
+		"content": "<p>An alias for the <i>ls</i> command with a colorful and easy to read output.</p>",
+		"links": [
+			{
+				"href": "https://github.com/Julow/lslAbFh",
+				"text": "Github repo"
+			}
+		],
+		"labels": {
+			"version": "New!",
+			"type": "Shell"
+		}
+	},
 	{
 		"title": "Fus 2",
 		"category": "js",
@@ -447,6 +465,7 @@ var pageMap = {
 	"#js": new CasePage("page-js", "#c96508", getJSONCategory("js")),
 	"#sublime-text": new CasePage("page-sublime-text", "#292929", getJSONCategory("sublime-text")),
 	"#chrome": new CasePage("page-chrome", "#188386", getJSONCategory("chrome")),
+	"#sh": new CasePage("page-shell", "#900404", getJSONCategory("sh"))
 };
 var currPage = null;
 
