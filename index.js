@@ -420,6 +420,7 @@ var mainPageJSON = [
 	{
 		"title": "StopFlash",
 		"category": "chrome",
+		"content": "<p>Block flash objects on web pages.</p>",
 		"links": [
 			{
 				"href": "https://chrome.google.com/webstore/detail/stopflash-flash-blocker/oiiohfpnbijbgdidjfcpcljcfbmkaooi",
@@ -431,6 +432,7 @@ var mainPageJSON = [
 			}
 		],
 		"labels": {
+			"version": "v0.1.5",
 			"type": "Chrome Extensions"
 		}
 	},
