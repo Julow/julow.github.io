@@ -286,10 +286,23 @@ function setColor(color)
 
 var mainPageJSON = [
 	{
+		"title": "Juloo Color Schemes",
+		"category": "sublime-text",
+		"content": "<p>My color schemes for Sublime Text.</p>",
+		"links": [
+			{
+				"href": "https://github.com/Julow/Juloo-Color-Schemes",
+				"text": "Github repo"
+			}
+		],
+		"labels": {
+			"type": "Sublime Text"
+		}
+	},
+	{
 		"title": "lslAbFh",
-		"large": true,
 		"category": "sh",
-		"content": "<p>An alias for the <i>ls</i> command with a colorful and easy to read output.</p>",
+		"content": "<p>An alias for the <i>ls</i> command<br />with a colorful and easy to read output.</p>",
 		"links": [
 			{
 				"href": "https://github.com/Julow/lslAbFh",
@@ -297,7 +310,6 @@ var mainPageJSON = [
 			}
 		],
 		"labels": {
-			"version": "New!",
 			"type": "Shell"
 		}
 	},
@@ -467,7 +479,7 @@ function getJSONCategory(cat)
 }
 
 var pageMap = {
-	"#main": new CasePage("page-main", "#cea503", mainPageJSON),
+	"#main": new CasePage("page-main", "#ab8903", mainPageJSON),
 	"#android": new CasePage("page-android", "#698825", getJSONCategory("android")),
 	"#js": new CasePage("page-js", "#c96508", getJSONCategory("js")),
 	"#sublime-text": new CasePage("page-sublime-text", "#292929", getJSONCategory("sublime-text")),
