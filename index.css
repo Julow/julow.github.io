@@ -19,6 +19,7 @@ a:hover, a:active
 p
 {
 	margin:10px 0;
+	color:#444444;
 }
 h1
 {
@@ -246,5 +247,8 @@ h2
 	width:100%;
 	text-align:center;
 	font-size:14px;
+}
+#footer > *
+{
 	color:#e9e9e9;
 }

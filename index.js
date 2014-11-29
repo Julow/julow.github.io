@@ -70,7 +70,7 @@ animFrame(function updateLoop()
 {
 	setTimeout(updateLoop, 200);
 	canvas.regen();
-	canvas.render();
+	canvas.checkSize();
 });
 
 function repl(str, map)
@@ -286,23 +286,55 @@ function setColor(color)
 
 var mainPageJSON = [
 	{
+		"title": "Save Go",
+		"category": "sh",
+		"content": "<p>Save and Go command.</p><p>Allow you to save working path<br />and go later.</p>",
+		"links": [
+			{
+				"href": "https://github.com/Julow/save-go",
+				"text": "Github repo"
+			}
+		],
+		"labels": {
+			"type": "Shell"
+		}
+	},
+	{
+		"title": "Juloo Sublime Package",
+		"category": "sublime-text",
+		"content": "<p>All my sublime plugins.</p><p>Contains Color Hightlight, Layout Spliter, Snippets, Color Schemes and more</p>",
+		"links": [
+			{
+				"href": "https://github.com/Julow/Juloo-Sublime-Package",
+				"text": "Github repo"
+			}
+		],
+		"labels": {
+			"type": "Sublime Text plugin"
+		}
+	},
+	{
 		"title": "Juloo Color Schemes",
 		"category": "sublime-text",
-		"content": "<p>My color schemes for Sublime Text.</p>",
+		"content": "<p>My color schemes for Sublime Text.</p><p>This plugin is added to<br />Juloo-Sublime-Package</p>",
 		"links": [
+			{
+				"href": "https://github.com/Julow/Juloo-Sublime-Package",
+				"text": "Juloo-Sublime-Package repo"
+			},
 			{
 				"href": "https://github.com/Julow/Juloo-Color-Schemes",
 				"text": "Github repo"
 			}
 		],
 		"labels": {
-			"type": "Sublime Text"
+			"type": "Sublime Text plugin"
 		}
 	},
 	{
 		"title": "lslAbFh",
 		"category": "sh",
-		"content": "<p>An alias for the <i>ls</i> command<br />with a colorful and easy to read output.</p>",
+		"content": "<img alt=\"lslAbFh\" src=\"https://raw.githubusercontent.com/Julow/lslAbFh/master/capture.png\" style=\"max-width:100%;\" /><p>An alias for the <i>ls</i> command<br />with a colorful and easy to read output.</p>",
 		"links": [
 			{
 				"href": "https://github.com/Julow/lslAbFh",
@@ -359,8 +391,12 @@ var mainPageJSON = [
 	{
 		"title": "ColorHighlight",
 		"category": "sublime-text",
-		"content": "<img alt=\"color highlight\" src=\"https://raw.githubusercontent.com/Julow/JulooColorHighlight/master/captures/highlight-example.png\" style=\"max-width:100%;\" /><p>Highlight colors in code<br />&amp; color conversion commands.</p>",
+		"content": "<img alt=\"color highlight\" src=\"https://raw.githubusercontent.com/Julow/JulooColorHighlight/master/captures/highlight-example.png\" style=\"max-width:100%;\" /><p>Highlight colors in code<br />&amp; color conversion commands.</p><p>This plugin is added to<br />Juloo-Sublime-Package</p>",
 		"links": [
+			{
+				"href": "https://github.com/Julow/Juloo-Sublime-Package",
+				"text": "Juloo-Sublime-Package repo"
+			},
 			{
 				"href": "https://github.com/Julow/JulooColorHighlight",
 				"text": "Github repo"
@@ -373,8 +409,12 @@ var mainPageJSON = [
 	{
 		"title": "LayoutSpliter",
 		"category": "sublime-text",
-		"content": "<img alt=\"layout spliter\" src=\"https://raw.githubusercontent.com/Julow/LayoutSpliter/master/captures/commands.png\" style=\"max-width:100%;\" /><p>Split layout as you want.<br /><i>No limit !</i></p>",
+		"content": "<img alt=\"layout spliter\" src=\"https://raw.githubusercontent.com/Julow/LayoutSpliter/master/captures/commands.png\" style=\"max-width:100%;\" /><p>Split layout as you want.<br /><i>No limit !</i></p><p>This plugin is added to<br />Juloo-Sublime-Package</p>",
 		"links": [
+			{
+				"href": "https://github.com/Julow/Juloo-Sublime-Package",
+				"text": "Juloo-Sublime-Package repo"
+			},
 			{
 				"href": "https://github.com/Julow/LayoutSpliter",
 				"text": "Github repo"
@@ -479,7 +519,7 @@ function getJSONCategory(cat)
 }
 
 var pageMap = {
-	"#main": new CasePage("page-main", "#ab8903", mainPageJSON),
+	"#main": new CasePage("page-main", "#0092c7", mainPageJSON),
 	"#android": new CasePage("page-android", "#698825", getJSONCategory("android")),
 	"#js": new CasePage("page-js", "#c96508", getJSONCategory("js")),
 	"#sublime-text": new CasePage("page-sublime-text", "#292929", getJSONCategory("sublime-text")),
