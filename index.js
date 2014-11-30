@@ -41,7 +41,7 @@ var JulooCanvas = fus(function(canvas)
 		this.cacheContext.fillStyle = this.color;
 		this.cacheContext.beginPath();
 		this.cacheContext.moveTo(5, 0);
-		for (var y = 0; y < this.canvas.height; y += 9)
+		for (var y = 0; y < this.canvas.height + 9; y += 9)
 			this.cacheContext.lineTo(((Math.random() * 8) | 0) + 1, y);
 		this.cacheContext.lineTo(0, this.canvas.height);
 		this.cacheContext.lineTo(0, 0);
@@ -285,6 +285,20 @@ function setColor(color)
 }
 
 var mainPageJSON = [
+	{
+		"title": "My Shell Rc",
+		"category": "sh",
+		"content": "<p>My rc config.</p><p>Contains some alias for<br />Git, GCC, Sublime Text, Ls<br />and Save Go</p>",
+		"links": [
+			{
+				"href": "https://github.com/Julow/My-Shell-Rc",
+				"text": "Github repo"
+			}
+		],
+		"labels": {
+			"type": "Shell"
+		}
+	},
 	{
 		"title": "Save Go",
 		"category": "sh",
