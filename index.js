@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 21:33:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/28 21:33:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/28 21:37:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,8 +234,8 @@ doc.addEventListener("mouseout", function(e)
 
 win.addEventListener("hashchange", function()
 {
-	showPage(win.location.hash);
 }, false);
+
 win.addEventListener("resize", function()
 {
 	canvas.checkSize();

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 21:32:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/28 21:34:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/28 21:52:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ body
 a, a:visited
 {
 	text-decoration:none;
-	color:inherit;
+	color:#e9e9e9;
 }
 a:hover, a:active
 {
@@ -73,7 +73,8 @@ h2
 	z-index:2;
 	width:20%;
 	min-width:145px;
-	text-align:right;
+	text-align:center;
+	color:#e7e7e7;
 }
 #left-content
 {
@@ -119,10 +120,10 @@ h2
 .icon
 {
 	display:inline-block;
-	width:24px;
 	height:24px;
-	margin:0 2px 0 2px;
+	padding:3px 0 0 30px;
 	background-image:url("social_icons.png");
+	background-repeat:no-repeat;
 }
 
 /*
@@ -164,12 +165,6 @@ h2
 .block
 {
 	margin:40px 0 70px 6vw;
-}
-.case-table
-{
-	width:100%;
-	padding:120px 0 80px 0;
-	text-align:center;
 }
 
 /*
