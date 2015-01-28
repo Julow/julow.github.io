@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 21:32:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/28 21:52:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/28 22:09:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ p
 }
 h1
 {
-	margin:15px 0 35px -2vw;
+	margin:0;
+	text-shadow:1px 1px 1px rgba(255, 255, 255, 0.5);
 }
 h2
 {
@@ -141,6 +142,7 @@ h2
 }
 #right-part a
 {
+	color:#9e4a00;
 	transition:color 0.6s;
 }
 #content
@@ -172,7 +174,7 @@ h2
 */
 #footer
 {
-	z-index:-4;
+	z-index:99;
 	position:absolute;
 	top:100%;
 	width:100%;
