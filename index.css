@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 21:32:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/28 22:09:03 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/28 22:22:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,7 @@ h2
 }
 #right-part a
 {
-	color:#9e4a00;
-	transition:color 0.6s;
+	color:#222222;
 }
 #content
 {

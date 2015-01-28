@@ -6,13 +6,30 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 21:33:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/28 21:37:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/28 22:26:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 (function(doc, win, animFrame){
 
-var DEFAULT_COLOR = "#9e4a00";
+var DEFAULT_COLOR = (function()
+{
+	var DARKNESS = 110;
+	var h = Math.random() * 6;
+	var rand = (Math.random() * DARKNESS) | 0;
+	if (h < 1)
+		return (rgbToHex(DARKNESS, rand, 0));
+	else if (h < 2)
+		return (rgbToHex(DARKNESS - rand, DARKNESS, 0));
+	else if (h < 3)
+		return (rgbToHex(0, DARKNESS, rand));
+	else if (h < 4)
+		return (rgbToHex(0, DARKNESS - rand, DARKNESS));
+	else if (h < 5)
+		return (rgbToHex(rand, 0, DARKNESS));
+	return (rgbToHex(DARKNESS, 0, DARKNESS - rand));
+})();
+
 var COLOR_ANIM = 320;
 
 var JulooCanvas = fus(function(canvas)
