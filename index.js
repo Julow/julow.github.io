@@ -1,4 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index.js                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/01/28 21:33:06 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/01/28 21:33:07 by jaguillo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 (function(doc, win, animFrame){
+
+var DEFAULT_COLOR = "#9e4a00";
+var COLOR_ANIM = 320;
 
 var JulooCanvas = fus(function(canvas)
 {
@@ -136,117 +151,6 @@ function rgbToHex(r, g, b)
 {
 	return "#" + (0x01000000 + (r << 16) + (g << 8) + b).toString(16).substr(1, 6);
 }
-function colorDiff(c1, c2)
-{
-	return Math.max(c1.r, c2.r) - Math.min(c1.r, c2.r)
-		+ Math.max(c1.g, c2.g) - Math.min(c1.g, c2.g)
-		+ Math.max(c1.b, c2.b) - Math.min(c1.b, c2.b);
-}
-
-var Page = fus(function(id, color)
-{
-	this.element = doc.getElementById(id);
-	this.color = color;
-}, {
-	setVisible: function(visible)
-	{
-		this.element.className = (visible)? this.element.className + " visible" : this.element.className.replace("visible", "");
-	}
-});
-
-var CasePage = fus(function(id, color, json)
-{
-	CasePage.super(this)(id, color);
-	this.cases = [];
-	if (this.element.className.indexOf("case-table") < 0)
-		this.element.className += " case-table";
-	for (var i = 0; i < json.length; ++i)
-	{
-		var c = json[i];
-		var div = doc.createElement("div");
-		if (c.type === "image")
-		{
-			div.className = "case big-center";
-			var img = doc.createElement("img");
-			img.src = c.img;
-			if (c.link)
-			{
-				var link = doc.createElement("a");
-				link.href = c.link;
-				link.target = "_blank";
-				link.appendChild(img);
-				div.appendChild(link);
-			}
-			else
-				div.appendChild(img);
-		}
-		else
-		{
-			div.className = "case";
-			if (c.title)
-			{
-				var title = doc.createElement("h2");
-				title.innerHTML = c.title;
-				div.appendChild(title);
-			}
-			div.innerHTML += c.content || "";
-			if (c.links)
-			{
-				for (var j = 0; j < c.links.length; ++j)
-				{
-					var link = c.links[j];
-					var p = doc.createElement("p");
-					var a = doc.createElement("a");
-					a.href = link.href;
-					a.target = "_blank";
-					a.innerHTML = link.text;
-					p.appendChild(a);
-					div.appendChild(p);
-				}
-			}
-		}
-		if (c.large)
-			div.className += " large";
-		if (c.labels)
-		{
-			for (var l in c.labels)
-			{
-				var label = doc.createElement("div");
-				label.className = l;
-				if (c.category && l === "type")
-				{
-					var a = doc.createElement("a");
-					a.href = "#" + c.category;
-					a.innerHTML = c.labels[l];
-					label.appendChild(a);
-				}
-				else
-				{
-					label.innerHTML = c.labels[l];
-				}
-				div.appendChild(label);
-			}
-		}
-		if (c.data)
-		{
-			for (var data in c.data)
-				div.setAttribute("data-" + data, c.data[data]);
-		}
-		this.cases.push(div);
-	}
-}, {
-	setVisible: function(visible)
-	{
-		for (var i = 0; i < this.cases.length; ++i)
-		{
-			if (visible)
-				this.element.appendChild(this.cases[i]);
-			else
-				this.element.removeChild(this.cases[i]);
-		}
-		CasePage.super(this, "setVisible")(visible);
-	}
-}, Page);
 
 var style = doc.createElement("style");
 doc.getElementsByTagName("head")[0].appendChild(style);
@@ -267,7 +171,7 @@ function setColor(color)
 		var toColor = hexToRgb(color);
 		if (lastAnim)
 			lastAnim.stop();
-		lastAnim = new Animation(colorDiff(fromColor, toColor) * 1.5, function()
+		lastAnim = new Animation(COLOR_ANIM, function()
 		{
 			currColor = rgbToHex(lastAnim.value(fromColor.r, toColor.r), lastAnim.value(fromColor.g, toColor.g), lastAnim.value(fromColor.b, toColor.b));
 			doc.body.style.backgroundColor = currColor;
@@ -283,282 +187,6 @@ function setColor(color)
 	}
 	style.innerHTML = repl(innerStyle, {"c": color});
 }
-
-var mainPageJSON = [
-	{
-		"title": "My Shell Rc",
-		"category": "sh",
-		"content": "<p>My rc config.</p><p>Contains some alias for<br />Git, GCC, Sublime Text, Ls<br />and Save Go</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/My-Shell-Rc",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"type": "Shell"
-		}
-	},
-	{
-		"title": "Save Go",
-		"category": "sh",
-		"content": "<p>Save and Go command.</p><p>Allow you to save working path<br />and go later.</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/save-go",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"type": "Shell"
-		}
-	},
-	{
-		"title": "Juloo Sublime Package",
-		"category": "sublime-text",
-		"content": "<p>All my sublime plugins.</p><p>Contains Color Hightlight, Layout Spliter, Snippets, Color Schemes and more</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/Juloo-Sublime-Package",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"type": "Sublime Text plugin"
-		}
-	},
-	{
-		"title": "Juloo Color Schemes",
-		"category": "sublime-text",
-		"content": "<p>My color schemes for Sublime Text.</p><p>This plugin is added to<br />Juloo-Sublime-Package</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/Juloo-Sublime-Package",
-				"text": "Juloo-Sublime-Package repo"
-			},
-			{
-				"href": "https://github.com/Julow/Juloo-Color-Schemes",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"type": "Sublime Text plugin"
-		}
-	},
-	{
-		"title": "lslAbFh",
-		"category": "sh",
-		"content": "<img alt=\"lslAbFh\" src=\"https://raw.githubusercontent.com/Julow/lslAbFh/master/capture.png\" style=\"max-width:100%;\" /><p>An alias for the <i>ls</i> command<br />with a colorful and easy to read output.</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/lslAbFh",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"type": "Shell"
-		}
-	},
-	{
-		"title": "Fus 2",
-		"category": "js",
-		"content": "<p>OOP base.<br />Inline class creation and inheritance</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/Fus2",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"version": "v2.0",
-			"type": "Javascript"
-		}
-	},
-	{
-		"title": "Color.js",
-		"category": "js",
-		"content": "<p>Parse/Convert/Format colors.<br />Hex, RGB, HSL, int...</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/Color.js",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"version": "v2.2.0",
-			"type": "Javascript"
-		}
-	},
-	{
-		"category": "android",
-		"type": "image",
-		"large": true,
-		"link": "https://play.google.com/store/apps/details?id=fr.juloo.leaf",
-		"img": "images/leaf-banner.png",
-		"labels": {
-			"type": "Android Game"
-		},
-		"data": {
-			"bgcolor": "#258023"
-		}
-	},
-	{
-		"title": "ColorHighlight",
-		"category": "sublime-text",
-		"content": "<img alt=\"color highlight\" src=\"https://raw.githubusercontent.com/Julow/JulooColorHighlight/master/captures/highlight-example.png\" style=\"max-width:100%;\" /><p>Highlight colors in code<br />&amp; color conversion commands.</p><p>This plugin is added to<br />Juloo-Sublime-Package</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/Juloo-Sublime-Package",
-				"text": "Juloo-Sublime-Package repo"
-			},
-			{
-				"href": "https://github.com/Julow/JulooColorHighlight",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"type": "Sublime Text plugin"
-		}
-	},
-	{
-		"title": "LayoutSpliter",
-		"category": "sublime-text",
-		"content": "<img alt=\"layout spliter\" src=\"https://raw.githubusercontent.com/Julow/LayoutSpliter/master/captures/commands.png\" style=\"max-width:100%;\" /><p>Split layout as you want.<br /><i>No limit !</i></p><p>This plugin is added to<br />Juloo-Sublime-Package</p>",
-		"links": [
-			{
-				"href": "https://github.com/Julow/Juloo-Sublime-Package",
-				"text": "Juloo-Sublime-Package repo"
-			},
-			{
-				"href": "https://github.com/Julow/LayoutSpliter",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"version": "v1.1.0",
-			"type": "Sublime Text plugin"
-		}
-	},
-	{
-		"category": "android",
-		"type": "image",
-		"large": true,
-		"link": "https://play.google.com/store/apps/details?id=fr.juloo.uumatter",
-		"img": "images/uumatter-banner.png",
-		"labels": {
-			"type": "Android Game"
-		},
-		"data": {
-			"bgcolor": "#6a2f6a"
-		}
-	},
-	{
-		"title": "LanguageInjector",
-		"category": "sublime-text",
-		"content": "<p>Inject native language regex.</p>",
-		"links": [
-			{
-				"href": "https://sublime.wbond.net/packages/LanguageInjector",
-				"text": "Package Control page"
-			},
-			{
-				"href": "https://github.com/Julow/LanguageInjector",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"version": "v1.1.1",
-			"type": "Sublime Text plugin"
-		}
-	},
-	{
-		"category": "android",
-		"type": "image",
-		"link": "https://play.google.com/store/apps/details?id=fr.juloo.tapwell",
-		"img": "images/tapwell-banner.png",
-		"labels": {
-			"type": "Android Game"
-		},
-		"data": {
-			"bgcolor": "#927020"
-		}
-	},
-	{
-		"title": "StopFlash",
-		"category": "chrome",
-		"content": "<p>Block flash objects on web pages.</p>",
-		"links": [
-			{
-				"href": "https://chrome.google.com/webstore/detail/stopflash-flash-blocker/oiiohfpnbijbgdidjfcpcljcfbmkaooi",
-				"text": "Chrome Webstore page"
-			},
-			{
-				"href": "https://github.com/Julow/StopFlash",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"version": "v0.1.5",
-			"type": "Chrome Extensions"
-		}
-	},
-	{
-		"title": "Kikoo!",
-		"category": "chrome",
-		"links": [
-			{
-				"href": "https://chrome.google.com/webstore/detail/kikoo/bplbefadcjgjpihpgndelkalllpgfnke",
-				"text": "Chrome Webstore page"
-			},
-			{
-				"href": "https://github.com/Julow/Kikoo",
-				"text": "Github repo"
-			}
-		],
-		"labels": {
-			"type": "Chrome Extensions"
-		}
-	}
-];
-
-function getJSONCategory(cat)
-{
-	var data = [];
-	for (var i = 0; i < mainPageJSON.length; ++i)
-	{
-		if (mainPageJSON[i]["category"] === cat)
-			data.push(mainPageJSON[i]);
-	}
-	return data;
-}
-
-var pageMap = {
-	"#main": new CasePage("page-main", "#0092c7", mainPageJSON),
-	"#android": new CasePage("page-android", "#698825", getJSONCategory("android")),
-	"#js": new CasePage("page-js", "#c96508", getJSONCategory("js")),
-	"#sublime-text": new CasePage("page-sublime-text", "#292929", getJSONCategory("sublime-text")),
-	"#chrome": new CasePage("page-chrome", "#188386", getJSONCategory("chrome")),
-	"#sh": new CasePage("page-shell", "#900404", getJSONCategory("sh"))
-};
-var currPage = null;
-
-function showPage(pageName)
-{
-	var page = pageMap[pageName];
-	if (!page)
-		return;
-	if (currPage)
-		currPage.setVisible(false);
-	setColor(page.color);
-	currPage = page;
-	page.setVisible(true);
-	canvas.checkSize();
-}
-
-if (pageMap[win.location.hash])
-	showPage(win.location.hash);
-else
-	showPage(Object.keys(pageMap)[0]);
 
 function getMargin(pos)
 {
@@ -598,9 +226,10 @@ function getAttribute(element, attribute)
 
 doc.addEventListener("mouseout", function(e)
 {
-	var c = getAttribute(e.relatedTarget, "data-bgcolor") || currPage.color;
+	var c = getAttribute(e.relatedTarget, "data-bgcolor") || DEFAULT_COLOR;
 	if (c != "none")
 		setColor(c);
+
 }, false);
 
 win.addEventListener("hashchange", function()
@@ -611,5 +240,7 @@ win.addEventListener("resize", function()
 {
 	canvas.checkSize();
 }, false);
+
+setColor(DEFAULT_COLOR);
 
 })(document, window, requestAnimationFrame || function(c){setTimeout(c, 20);});

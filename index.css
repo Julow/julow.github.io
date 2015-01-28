@@ -1,6 +1,18 @@
-/**
- * Base styles
- */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index.css                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/01/28 21:32:57 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/01/28 21:34:47 by jaguillo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*
+** Base styles
+*/
 body
 {
 	margin:0;
@@ -29,9 +41,15 @@ h2
 {
 	margin:10px 0;
 }
-/**
- * Layout
- */
+
+.center
+{
+	text-align:center;
+}
+
+/*
+** Layout
+*/
 #layout
 {
 	overflow:hidden;
@@ -45,10 +63,11 @@ h2
 	min-height:100vh;
 	font-size:16px;
 }
-/**
- * - Left part
- * - (Menu, title)
- */
+
+/*
+** - Left part
+** - (Menu, title)
+*/
 #left-part
 {
 	z-index:2;
@@ -66,9 +85,10 @@ h2
 {
 	position:fixed;
 }
-/**
- * - - Logo
- */
+
+/*
+** - - Logo
+*/
 #logo
 {
 	margin:190px 2vw 0 0;
@@ -76,9 +96,10 @@ h2
 	border-radius:4px;
 	box-shadow:0 0 2px rgba(0, 0, 0, 0.2);
 }
-/**
- * - - Canvas
- */
+
+/*
+** - - Canvas
+*/
 #canvas
 {
 	pointer-events:none;
@@ -87,9 +108,10 @@ h2
 	top:0;
 	right:-155px;
 }
-/**
- * - - Icons
- */
+
+/*
+** - - Icons
+*/
 .left-block
 {
 	margin:24px 2vw 24px 0;
@@ -102,10 +124,11 @@ h2
 	margin:0 2px 0 2px;
 	background-image:url("social_icons.png");
 }
-/**
- * - Right part
- * - (Content)
- */
+
+/*
+** - Right part
+** - (Content)
+*/
 #right-part
 {
 	width:75%;
@@ -126,36 +149,18 @@ h2
 	text-shadow:0 0 1px #fafafa;
 	color:#222222;
 }
-/**
- * - - Page content
- */
-.page
-{
-	z-index:0;
-	position:absolute;
-	top:0;
-	opacity:0;
-	visibility:hidden;
-	transition:opacity 0.2s ease-out,visibility 0s ease 0.2s;
-}
-.page.visible
-{
-	z-index:1;
-	position:relative;
-	opacity:1;
-	visibility:visible;
-	transition:opacity .17s ease-in-out,visibility 0s ease 0s;
-}
-/**
- * - - - Page banner
- */
+
+/*
+** - - - Page banner
+*/
 .banner
 {
 	width:100%;
 }
-/**
- * - - - Page blocks
- */
+
+/*
+** - - - Page blocks
+*/
 .block
 {
 	margin:40px 0 70px 6vw;
@@ -166,79 +171,10 @@ h2
 	padding:120px 0 80px 0;
 	text-align:center;
 }
-/**
- * - - - Case table content
- */
-.case
-{
-	position:relative;
-	display:inline-block;
-	vertical-align:top;
-	width:35%;
-	min-width:190px;
-	margin:12px 2%;
-	padding:4px 0 10px 0;
-	background:#f0f0f0;
-	box-shadow:0 0 1px #cccccc;
-	transition:box-shadow .3s ease,opacity .4s ease;
-}
-.case:hover
-{
-	box-shadow:0 0 1px #aaaaaa;
-}
-.large
-{
-	width:74%;
-	min-width:350px;
-	margin:24px 0;
-}
-.big-center
-{
-	overflow:hidden;
-	padding:0 0 30% 0;
-}
-.big-center img
-{
-	position:absolute;
-	height:100%;
-	top:-9999px;
-	right:-9999px;
-	bottom:-9999px;
-	left:-9999px;
-	margin:auto;
-}
-.big-center.large img
-{
-	width:100%;
-	height:auto;
-}
-.type
-{
-	position:absolute;
-	right:0;
-	bottom:0;
-	padding:0 4px;
-	background:#dddddd;
-	border-top:1px solid #cccccc;
-	border-left:1px solid #cccccc;
-	font-size:12px;
-	color:#777777;
-}
-.version
-{
-	position:absolute;
-	top:0;
-	left:0;
-	padding:0 4px;
-	background:#dddddd;
-	border-right:1px solid #cccccc;
-	border-bottom:1px solid #cccccc;
-	font-size:12px;
-	color:#777777;
-}
-/**
- * - Footer
- */
+
+/*
+** - Footer
+*/
 #footer
 {
 	z-index:-4;
