@@ -6,58 +6,90 @@
 <!--                                                  +:+ +:+         +:+    -->
 <!-- By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+       -->
 <!--                                              +#+#+#+#+#+   +#+          -->
-<!-- Created: 2015/01/28 21:33:14 by jaguillo          #+#    #+#            -->
-<!-- Updated: 2015/01/28 21:33:16 by jaguillo         ###   ########.fr      -->
+<!-- Created: 2016/02/09 15:53:03 by jaguillo          #+#    #+#            -->
+<!-- Updated: 2016/02/09 16:27:04 by jaguillo         ###   ########.fr      -->
 <!--                                                                         -->
 <!-- *********************************************************************** -->
 <html>
 <head>
-	<title>Juloooooooooooooo</title>
+
+	<title>Blank</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="index.css" />
-	<script type="text/javascript" src="https://cdn.rawgit.com/Julow/Fus2/master/fus2.js"></script>
+	<style type="text/css">
+
+.blink{
+	animation: blink 2s ease infinite;
+}
+@keyframes blink{
+	50% { opacity: 0; }
+}
+
+body{
+	overflow: hidden;
+	margin: 0;
+	font-family: Arial, sans-serif;
+	font-size: 0;
+}
+
+.center{
+	margin: 0 auto;
+	text-align: center;
+}
+
+#clock{
+	margin-top: 25vmin;
+}
+
+.clock-sep{
+	padding: 0 1vw;
+	font-weight: bold;
+	font-size: 8vmin;
+	vertical-align: text-bottom;
+}
+
+.clock-digit{
+	font-size: 12vmin;
+}
+
+	</style>
 </head>
 <body>
-<div id="layout">
-	<div id="left-part" class="part">
-		<div id="left-content">
-			<div class="fixed">
-				<a href="#"><img alt="juloo" id="logo" src="https://avatars2.githubusercontent.com/u/2310568?v=2&amp;s=120" width="120" height="120" /></a>
-				<div class="left-block">
-					<a class="icon" data-bgcolor="#393939" style="background-position:0 -72px;" title="Github" href="https://github.com/Julow">Github</a>
-				</div>
-			</div>
-		</div>
-		<canvas id="canvas" width="350" height="0"></canvas>
-	</div>
-	<div id="right-part" class="part">
-		<div id="content">
-			<div class="block"></div>
-			<p class="center">Hello world !</p>
-			<div class="block">
-				<h2>School projects</h2>
-				<ul>
-					<li><a target="_blank" href="https://github.com/Julow/libft">libft</a> (Grade: 0% + 108%)</li>
-					<li><a target="_blank" href="https://github.com/Julow/get_next_line">get_next_line</a> (Grade: 58% + 117%)</li>
-					<li><a target="_blank" href="https://github.com/Julow/fdf">fdf</a> (Grade: 116%)</li>
-					<li><a target="_blank" href="https://github.com/Julow/ft_ls">ft_ls</a> (Grade: 0% + 96%)</li>
-					<li><a target="_blank" href="https://github.com/Julow/ft_sh1">ft_sh1</a> (Grade: 111%)</li>
-					<li><a target="_blank" href="https://github.com/Julow/ft_printf">ft_printf</a> (Grade: 111%)</li>
-					<li><a target="_blank" href="https://github.com/Julow/wolf3d">wolf3d</a> (In progress)</li>
-					<li><a target="_blank" href="https://github.com/Julow/fract_ol">fract_ol</a> (Grade: 106%)</li>
-					<li><a target="_blank" href="https://github.com/Julow/rtv1">rtv1</a> (In progress)</li>
-					<li><a target="_blank" href="https://github.com/Julow/libft_asm">libft_asm</a> (Grade: 117%)</li>
-					<li><a target="_blank" href="https://github.com/Julow/ft_sh2">ft_sh2</a> (In progress)</li>
-					<li><a target="_blank" href="https://github.com/Julow/malloc">malloc</a> (In progress)</li>
-					<li><a target="_blank" href="https://github.com/Julow/push_swap">push_swap</a> (In progress)</li>
-				</ul>
-			</div>
-		</div>
-		<div id="footer">
-			<p>Yo, I'm the footer.</p>
-		</div>
-	</div>
-	<script type="text/javascript" src="index.js"></script>
+
+<div class="center" id="clock">
+	<span class="clock-digit" id="left-digit">00</span>
+	<span class="clock-sep blink">:</span>
+	<span class="clock-digit" id="right-digit">00</span>
 </div>
+
+<script type="text/javascript">
+
+var last_h = -1;
+var last_m = -1;
+
+var left_digit = document.getElementById("left-digit");
+var right_digit = document.getElementById("right-digit");
+
+function update()
+{
+	d = new Date();
+	h = d.getHours();
+	m = d.getMinutes();
+	if (h != last_h)
+	{
+		last_h = h;
+		left_digit.innerText = h;
+	}
+	if (m != last_m)
+	{
+		last_m = m;
+		right_digit.innerText = m;
+	}
+	setTimeout(update, (61 - d.getSeconds()) * 1000);
+}
+
+update();
+
+</script>
+
 </body>
 </html>
