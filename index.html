@@ -7,7 +7,7 @@
 <!-- By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+       -->
 <!--                                              +#+#+#+#+#+   +#+          -->
 <!-- Created: 2016/02/09 15:53:03 by jaguillo          #+#    #+#            -->
-<!-- Updated: 2016/02/09 16:27:04 by jaguillo         ###   ########.fr      -->
+<!-- Updated: 2016/03/19 15:09:48 by juloo            ###   ########.fr      -->
 <!--                                                                         -->
 <!-- *********************************************************************** -->
 <html>
@@ -17,13 +17,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<style type="text/css">
 
-.blink{
-	animation: blink 2s ease infinite;
-}
-@keyframes blink{
-	50% { opacity: 0; }
-}
-
 body{
 	overflow: hidden;
 	margin: 0;
@@ -31,33 +24,30 @@ body{
 	font-size: 0;
 }
 
-.center{
-	margin: 0 auto;
-	text-align: center;
-}
-
 #clock{
-	margin-top: 25vmin;
+	margin: 20px 0 0 20px;
 }
 
 .clock-sep{
-	padding: 0 1vw;
+	padding: 0 3px;
 	font-weight: bold;
-	font-size: 8vmin;
+	font-size: 16px;
 	vertical-align: text-bottom;
+	color: #aaaaaa;
 }
 
 .clock-digit{
-	font-size: 12vmin;
+	font-size: 26px;
+	color: #8f8f8f;
 }
 
 	</style>
 </head>
 <body>
 
-<div class="center" id="clock">
+<div id="clock">
 	<span class="clock-digit" id="left-digit">00</span>
-	<span class="clock-sep blink">:</span>
+	<span class="clock-sep">:</span>
 	<span class="clock-digit" id="right-digit">00</span>
 </div>
 
@@ -82,7 +72,7 @@ function update()
 	if (m != last_m)
 	{
 		last_m = m;
-		right_digit.innerText = m;
+		right_digit.innerText = ((m < 10) ? "0" : "") + m;
 	}
 	setTimeout(update, (61 - d.getSeconds()) * 1000);
 }
