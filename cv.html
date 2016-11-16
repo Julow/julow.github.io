@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- *********************************************************************** -->
+<!--                                                                         -->
+<!--                                                      :::      ::::::::  -->
+<!-- cv.html                                            :+:      :+:    :+:  -->
+<!--                                                  +:+ +:+         +:+    -->
+<!-- By: ccompera <ccompera@student.42.fr>          +#+  +:+       +#+       -->
+<!--                                              +#+#+#+#+#+   +#+          -->
+<!-- Created: 2016/11/15 16:03:58 by ccompera          #+#    #+#            -->
+<!-- Updated: 2016/11/16 12:08:23 by ccompera         ###   ########.fr      -->
+<!--                                                                         -->
+<!-- *********************************************************************** -->
+<html>
+<head>
+	<title>CV Jules AGUILLON - Developer</title>
+
+	<style type="text/css">
+
+body
+{
+	margin: 40px 40px 0 40px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 12px;
+	color: #2a2a2a;
+	-webkit-print-color-adjust: exact;
+}
+
+.block
+{
+	max-width: 750px;
+	min-width: 680px;
+	margin: 15px auto;
+}
+
+.row > *
+{
+	float: right;
+}
+
+.row > *:first-child
+{
+	float: left;
+}
+
+.row:after
+{
+	content: " ";
+	display: block;
+	clear: both;
+}
+
+.center
+{
+	text-align: center;
+}
+
+p
+{
+	margin: 7px 0 0 10px;
+}
+
+a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover
+{
+	color: #78BDD4;
+}
+
+h1, h2
+{
+	margin: 0 0 5px 0;
+	color: black;
+}
+
+h3
+{
+	margin: 10px 0 0 0;
+}
+
+.spacer
+{
+	margin: 35px auto 50px auto;
+	border: 0;
+	max-width: 500px;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+}
+
+.skill-name
+{
+	display: inline-block;
+	min-width: 145px;
+}
+
+.skill-info
+{
+	margin-left: 10px;
+	font-style: italic;
+}
+
+.skill-box
+{
+	text-align: right;
+}
+
+.skill-box > *
+{
+	display: inline-block;
+	margin: 0 0 0 10px;
+	vertical-align: middle;
+}
+
+.skill-bar
+{
+	width: 120px;
+	height: 14px;
+	margin: 1px 0 1px 10px;
+	background: #f1ecea;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.skill-bar > *
+{
+	height: 100%;
+	background: #cccccc;
+}
+
+.bg-blue { background: #4F9FBA; }
+.bg-yellow { background: #FFD267; }
+.bg-red { background: #FF7F67; }
+
+.bg-red-h { background: #FF6346; }
+
+.fg-blue { color: #4f9eba; }
+.fg-yellow { color: #FFD267; }
+.fg-red { color: #FF7F67; }
+
+.fg-blue-hh { color: #147393; }
+
+@page
+{
+	margin: 0;
+}
+
+	</style>
+
+</head>
+<body>
+
+	<div class="block row">
+		<div>
+			<h1>Jules AGUILLON</h1>
+			<p>13/09/1996</p>
+		</div>
+		<div>
+			<p><a href="mailto:juloo.dsi@gmail.com">juloo.dsi@gmail.com</a></p>
+			<p><a href="tel:+33667856614">06 67 85 66 14</a></p>
+			<p><a href="https://github.com/julow" target="_blank">github.com/Julow</a></p>
+		</div>
+	</div>
+
+	<div class="block center">
+		<h1>Developer</h1>
+		<hr class="spacer" />
+	</div>
+
+	<div class="block">
+		<div class="block">
+			<p>I've started learning Computer Programming with passion two years ago at School 42.</p>
+		</div>
+	</div>
+
+	<div class="block">
+		<h2 class="fg-blue-hh">42 Projects</h2>
+		<h3>Graphics</h3>
+		<div class="row">
+			<div>
+				<p><span class="skill-name">Particle System</span><span class="skill-info">Updating & rendering millions of particles</span></p>
+				<p><span class="skill-name">Scop</span><span class="skill-info">3D rendering using OpenGL</span></p>
+				<p><span class="skill-name">RTv1</span><span class="skill-info">Ray tracing</span></p>
+
+				<p><span class="skill-name">Nibbler, Fdf, Wolf3d, Fract'ol</span><span class="skill-info">Introduction to graphics</span></p>
+			</div>
+			<div>
+				<div class="skill-box"><p>OpenGL</p><div class="skill-bar"><div class="bg-blue" style="width: 85%;"></div></div></div>
+				<div class="skill-box"><p>OpenCL</p><div class="skill-bar"><div class="bg-blue" style="width: 85%;"></div></div></div>
+				<div class="skill-box"><p>3D Maths</p><div class="skill-bar"><div class="bg-yellow" style="width: 60%;"></div></div></div>
+			</div>
+		</div>
+
+		<h3>Unix</h3>
+		<div class="row">
+			<div>
+				<p><span class="skill-name">Sh21</span><span class="skill-info">Posix shell (still in progress)</span></p>
+				<p><span class="skill-name">Ft_ping</span><span class="skill-info">Low level network access</span></p>
+				<p><span class="skill-name">Ft_p</span><span class="skill-info">Introduction to sockets</span></p>
+
+				<p><span class="skill-name">Corewar</span><span class="skill-info">Compiler/VM/Debugger for a dummy language</span></p>
+
+				<p><span class="skill-name">Libft_asm</span><span class="skill-info">Introduction to ASM</span></p>
+				<p><span class="skill-name">AbstractVM</span><span class="skill-info">Practicing C++</span></p>
+
+				<p><span class="skill-name">Ft_select, Ft_script, Ft_ls</span><span class="skill-info">Advanced C (TTY, unix' syscalls)</span></p>
+				<p><span class="skill-name">Ft_printf, Get_next_line, Libft</span><span class="skill-info">Practicing C</span></p>
+			</div>
+			<div>
+				<div class="skill-box"><p>C</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>ASM</p><div class="skill-bar"><div class="bg-red" style="width: 90%;"></div></div></div>
+				<div class="skill-box"><p>Unix</p><div class="skill-bar"><div class="bg-blue" style="width: 65%;"></div></div></div>
+				<div class="skill-box"><p>Network</p><div class="skill-bar"><div class="bg-yellow" style="width: 60%;"></div></div></div>
+				<div class="skill-box"><p>Parsing</p><div class="skill-bar"><div class="bg-yellow" style="width: 75%;"></div></div></div>
+			</div>
+		</div>
+
+		<h3>Algorithmic</h3>
+		<div class="row">
+			<div>
+				<p><span class="skill-name">N-puzzle</span><span class="skill-info">Algorithms (Advanced A*) and UI</span></p>
+				<p><span class="skill-name">Fillit, Lem_in, Push_swap</span><span class="skill-info">Practicing algorithms</span></p>
+			</div>
+			<div>
+				<div class="skill-box"><p>Algo</p><div class="skill-bar"><div class="bg-yellow" style="width: 60%;"></div></div></div>
+			</div>
+		</div>
+
+		<h3>Security</h3>
+		<div class="row">
+			<div>
+				<p><span class="skill-name">RainFall</span><span class="skill-info">Disassembling, Shellcode</span></p>
+				<p><span class="skill-name">SnowCrash</span><span class="skill-info">Skill, Shell</span></p>
+				<p><span class="skill-name">RootMe App-System, RootMe Cracking</span><span class="skill-info">Challenges</span></p>
+			</div>
+			<div>
+				<div class="skill-box"><p>Bash</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>Gdb</p><div class="skill-bar"><div class="bg-blue" style="width: 75%;"></div></div></div>
+				<div class="skill-box"><p>System</p><div class="skill-bar"><div class="bg-yellow" style="width: 50%;"></div></div></div>
+			</div>
+		</div>
+
+		<h3>Pool</h3>
+		<div class="row">
+			<div>
+				<p><span class="skill-name">php_pool</span><span class="skill-info">Introduction to Web</span></p>
+				<p><span class="skill-name">unity_pool</span><span class="skill-info">Introduction to Unity</span></p>
+				<p><span class="skill-name">ocaml_pool</span><span class="skill-info">Introduction to OCaml and functional programming</span></p>
+				<p><span class="skill-name">cpp_pool</span><span class="skill-info">Introduction to C++ and Object programing</span></p>
+			</div>
+			<div>
+				<div class="skill-box"><p>C++</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>OCaml</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>C#</p><div class="skill-bar"><div class="bg-red" style="width: 40%;"></div></div></div>
+				<div class="skill-box"><p>Web</p><div class="skill-bar"><div class="bg-yellow" style="width: 10%;"></div></div></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="block">
+		<h2 class="fg-blue-hh">More</h2>
+		<div class="row">
+			<div>
+				<p><span class="skill-name">env</span><span class="skill-info">Collection of tools and config</span></p>
+				<p><span class="skill-name">Juloo-Sublime-Package</span><span class="skill-info">Collection of extension for Sublime Text</span></p>
+				<p><span class="skill-name">chrome-bookmarks</span><span class="skill-info">Chrome extension dev in OCaml (still in progress)</span></p>
+				<p><span class="skill-name">Unexpected Keyboard</span><span class="skill-info">Alternative keyboard for android</span></p>
+				<p><span class="skill-name">makemake</span><span class="skill-info">Manage dependencies and generate a Makefile</span></p>
+				<p><span class="skill-name">oh-my-generator</span><span class="skill-info">Execute python script integrated into source code</span></p>
+			</div>
+			<div>
+				<div class="skill-box"><p>Python</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>Java</p><div class="skill-bar"><div class="bg-red" style="width: 75%;"></div></div></div>
+				<div class="skill-box"><p>Sublime Text</p><div class="skill-bar"><div class="bg-blue" style="width: 90%;"></div></div></div>
+				<div class="skill-box"><p>Android</p><div class="skill-bar"><div class="bg-yellow" style="width: 60%;"></div></div></div>
+				<br />
+				<br />
+				<div class="skill-box"><p>French</p><div class="skill-bar"><div class="bg-red-h" style="width: 85%;"></div></div></div>
+				<div class="skill-box"><p>English</p><div class="skill-bar"><div class="bg-red-h" style="width: 65%;"></div></div></div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
