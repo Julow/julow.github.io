@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- *********************************************************************** -->
+<!--                                                                         -->
+<!--                                                      :::      ::::::::  -->
+<!-- homepage.html                                      :+:      :+:    :+:  -->
+<!--                                                  +:+ +:+         +:+    -->
+<!-- By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+       -->
+<!--                                              +#+#+#+#+#+   +#+          -->
+<!-- Created: 2016/11/26 15:21:47 by jaguillo          #+#    #+#            -->
+<!-- Updated: 2016/11/27 15:45:40 by jaguillo         ###   ########.fr      -->
+<!--                                                                         -->
+<!-- *********************************************************************** -->
+<html>
+<head>
+
+	<title>HOMEPAGE</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="homepage.css" />
+
+</head>
+<body>
+
+	<div class="block">
+
+		<div class="current">
+			<div class="table-cell">
+				<div class="left">
+					<p class="clock">
+						<span id="left-digit" class="clock-digit">00</span>
+						<span class="clock-sep">:</span>
+						<span id="right-digit" class="clock-digit">00</span>
+					</p>
+					<div class="row">
+						<p class="condition"><b>10</b>°C</p>
+						<p class="condition"><b>0</b> km/h</p>
+					</div>
+				</div>
+				<div class="icon"></div>
+			</div>
+		</div>
+
+		<div class="graph-holder">
+			<canvas id="forecast-temp" width="900" height="200"></canvas>
+		</div>
+
+		<div class="graph-holder">
+			<canvas id="forecast-rain" width="900" height="200"></canvas>
+		</div>
+
+		<div class="graph-holder">
+			<canvas id="forecast-wind" width="900" height="200"></canvas>
+		</div>
+
+		<!-- <div class="graph-holder"> -->
+			<!-- <svg class="sun-phases"></svg> -->
+		<!-- </div> -->
+
+	</div>
+
+	<script type="text/javascript" src="homepage.js"></script>
+
+</body>
+</html>
+
