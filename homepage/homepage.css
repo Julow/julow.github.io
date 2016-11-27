@@ -1,0 +1,113 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   homepage.css                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/26 15:22:04 by jaguillo          #+#    #+#             */
+/*   Updated: 2016/11/27 15:45:54 by jaguillo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*
+** ========================================================================== **
+*/
+
+body{
+	overflow: hidden;
+	font-family: Arial, sans-serif;
+}
+
+/*
+** ========================================================================== **
+*/
+
+.block
+{
+	width: 900px;
+	margin: 20px auto 0 auto;
+}
+
+.table-cell
+{
+	display: table-cell;
+}
+
+.row > *
+{
+	float: right;
+}
+
+.row > *:first-child
+{
+	float: left;
+}
+
+.row:after
+{
+	content: " ";
+	display: block;
+	clear: both;
+}
+
+/*
+** ========================================================================== **
+** Current
+*/
+
+.current
+{
+	display: inline-block;
+	margin: 50px 0 50px 150px;
+}
+
+.current .left
+{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.current .icon
+{
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	background: rgba(0, 0, 0, 0.1);
+	vertical-align: middle;
+}
+
+.current .clock
+{
+	padding: 5px 15px;
+	font-size: 0;
+}
+
+.current .clock-sep
+{
+	padding: 0 3px;
+	font-weight: bold;
+	font-size: 30px;
+	vertical-align: text-bottom;
+}
+
+.current .clock-digit
+{
+	font-size: 50px;
+}
+
+.current .condition
+{
+	margin: 10px;
+}
+
+/*
+** ========================================================================== **
+** Graph
+*/
+
+.graph-holder
+{
+	margin: 20px 0;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
