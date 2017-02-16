@@ -7,7 +7,7 @@
 <!-- By: ccompera <ccompera@student.42.fr>          +#+  +:+       +#+       -->
 <!--                                              +#+#+#+#+#+   +#+          -->
 <!-- Created: 2016/11/15 16:03:58 by ccompera          #+#    #+#            -->
-<!-- Updated: 2016/11/16 12:08:23 by ccompera         ###   ########.fr      -->
+<!-- Updated: 2017/02/16 19:45:43 by jaguillo         ###   ########.fr      -->
 <!--                                                                         -->
 <!-- *********************************************************************** -->
 <html>
@@ -47,6 +47,17 @@ body
 	content: " ";
 	display: block;
 	clear: both;
+}
+
+.row-3
+{
+	position: relative;
+}
+
+.row-3 > *
+{
+	display: inline-block;
+	width: 30%;
 }
 
 .center
@@ -176,6 +187,86 @@ h3
 	</div>
 
 	<div class="block">
+		<h2 class="fg-blue-hh">Languages</h2>
+		<div class="row-3">
+			<div>
+				<div class="skill-box"><p>C</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>ASM</p><div class="skill-bar"><div class="bg-red" style="width: 90%;"></div></div></div>
+				<div class="skill-box"><p>Bash</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>C++</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+			</div>
+
+			<div>
+				<div class="skill-box"><p>OCaml</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>C#</p><div class="skill-bar"><div class="bg-red" style="width: 40%;"></div></div></div>
+				<div class="skill-box"><p>Python</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
+				<div class="skill-box"><p>Java</p><div class="skill-bar"><div class="bg-red" style="width: 75%;"></div></div></div>
+			</div>
+
+			<div>
+				<div class="skill-box"><p>French</p><div class="skill-bar"><div class="bg-red-h" style="width: 85%;"></div></div></div>
+				<div class="skill-box"><p>English</p><div class="skill-bar"><div class="bg-red-h" style="width: 65%;"></div></div></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="block">
+		<h2 class="fg-blue-hh">Interests</h2>
+		<h3>Graphics</h3>
+		<div class="row">
+			<div>
+				<p style="width: 480px;">I really enjoy pushing <b>GPU capabilities</b> to its max, for instance through<br />
+				- <b>3D rendering</b> with OpenGL (<a href="https://github.com/Julow/scop">Scop</a>) or<br />
+				- <b>parallel computation</b> with OpenCL (<a href="https://github.com/Julow/particle_system">Particle System</a>).</p>
+				<p>And I'm not afraid of <b>math</b> (<a href="https://github.com/Julow/rtv1">RTv1</a>) !</p>
+			</div>
+			<div>
+				<div class="skill-box"><p>OpenGL</p><div class="skill-bar"><div class="bg-blue" style="width: 85%;"></div></div></div>
+				<div class="skill-box"><p>OpenCL</p><div class="skill-bar"><div class="bg-blue" style="width: 85%;"></div></div></div>
+				<div class="skill-box"><p>3D Maths</p><div class="skill-bar"><div class="bg-yellow" style="width: 60%;"></div></div></div>
+			</div>
+		</div>
+
+		<h3>Software architecture</h3>
+		<div class="row">
+			<div>
+				<p style="width: 480px;">I often rack my brains on making smart architecture <b>design decisions</b> in order to create <b>modulable</b> and <b>reliable</b> code.
+					I'm constantly looking for learning new <b>design patterns</b> and applying them.</p>
+					<p style="width: 480px;">Also, I'm equally comfortable with both <b>functional</b> and imperative <b>object-oriented</b> programming.</p>
+			</div>
+			<div>
+				<div class="skill-box"><p>Functional P.</p><div class="skill-bar"><div class="bg-yellow" style="width: 85%;"></div></div></div>
+				<div class="skill-box"><p>Object-Oriented P.</p><div class="skill-bar"><div class="bg-yellow" style="width: 90%;"></div></div></div>
+				<div class="skill-box"><p>Design patterns</p><div class="skill-bar"><div class="bg-yellow" style="width: 75%;"></div></div></div>
+			</div>
+		</div>
+
+		<h3>Algorithm</h3>
+		<div class="row">
+			<div>
+				<p>.</p>
+			</div>
+			<div>
+				<div class="skill-box"><p>Algo</p><div class="skill-bar"><div class="bg-yellow" style="width: 60%;"></div></div></div>
+			</div>
+		</div>
+
+		<h3>Low level/Unix</h3>
+		<div class="row">
+			<div>
+				<p style="width: 480px;">I also like <b>low level</b> programming (<a href="https://github.com/Julow/libft_asm">libft_asm</a>) and working with <b>Unix</b> environment (<a href="https://github.com/Julow/ft_select">ft_select</a>, <a href="https://github.com/Julow/ft_script">ft_script</a>, <a href="https://github.com/Julow/ft_ls">ft_ls</a>) and <b>network</b> (<a href="https://github.com/Julow/ft_ping">ft_ping</a>, <a href="https://github.com/Julow/ft_p">ft_p</a>).</p>
+				<p>Plus, I made a <b>posix shell</b> on my own (<a href="https://github.com/Julow/sh21">sh21</a>).</p>
+			</div>
+			<div>
+				<div class="skill-box"><p>Unix</p><div class="skill-bar"><div class="bg-blue" style="width: 65%;"></div></div></div>
+				<div class="skill-box"><p>Gdb</p><div class="skill-bar"><div class="bg-blue" style="width: 75%;"></div></div></div>
+				<div class="skill-box"><p>Network</p><div class="skill-bar"><div class="bg-yellow" style="width: 60%;"></div></div></div>
+				<div class="skill-box"><p>Parsing</p><div class="skill-bar"><div class="bg-yellow" style="width: 75%;"></div></div></div>
+			</div>
+		</div>
+	</div>
+
+		<!-- <div class="block">
 		<h2 class="fg-blue-hh">42 Projects</h2>
 		<h3>Graphics</h3>
 		<div class="row">
@@ -257,7 +348,7 @@ h3
 				<div class="skill-box"><p>Web</p><div class="skill-bar"><div class="bg-yellow" style="width: 10%;"></div></div></div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="block">
 		<h2 class="fg-blue-hh">More</h2>
@@ -271,14 +362,8 @@ h3
 				<p><span class="skill-name">oh-my-generator</span><span class="skill-info">Execute python script integrated into source code</span></p>
 			</div>
 			<div>
-				<div class="skill-box"><p>Python</p><div class="skill-bar"><div class="bg-red" style="width: 95%;"></div></div></div>
-				<div class="skill-box"><p>Java</p><div class="skill-bar"><div class="bg-red" style="width: 75%;"></div></div></div>
 				<div class="skill-box"><p>Sublime Text</p><div class="skill-bar"><div class="bg-blue" style="width: 90%;"></div></div></div>
 				<div class="skill-box"><p>Android</p><div class="skill-bar"><div class="bg-yellow" style="width: 60%;"></div></div></div>
-				<br />
-				<br />
-				<div class="skill-box"><p>French</p><div class="skill-bar"><div class="bg-red-h" style="width: 85%;"></div></div></div>
-				<div class="skill-box"><p>English</p><div class="skill-bar"><div class="bg-red-h" style="width: 65%;"></div></div></div>
 			</div>
 		</div>
 	</div>
