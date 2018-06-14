@@ -1,78 +1,27 @@
 <!DOCTYPE html>
-<!-- *********************************************************************** -->
-<!--                                                                         -->
-<!--                                                      :::      ::::::::  -->
-<!-- cv.html                                            :+:      :+:    :+:  -->
-<!--                                                  +:+ +:+         +:+    -->
-<!-- By: ccompera <ccompera@student.42.fr>          +#+  +:+       +#+       -->
-<!--                                              +#+#+#+#+#+   +#+          -->
-<!-- Created: 2016/11/15 16:03:58 by ccompera          #+#    #+#            -->
-<!-- Updated: 2017/03/13 14:44:44 by jaguillo         ###   ########.fr      -->
-<!--                                                                         -->
-<!-- *********************************************************************** -->
 <html>
 <head>
-	<title>CV Jules AGUILLON - Developer</title>
-
+	<title>Jules AGUILLON</title>
 	<style type="text/css">
 
 body
 {
-	margin: 40px 40px 0 40px;
+	margin: 0;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-size: 12px;
-	color: #2a2a2a;
-	-webkit-print-color-adjust: exact;
-}
-
-.block
-{
-	width: 690px;
-	margin: 15px auto;
-}
-
-.row > *
-{
-	float: right;
-}
-
-.row > *:first-child
-{
-	float: left;
-}
-
-.row:after
-{
-	content: " ";
-	display: block;
-	clear: both;
-}
-
-.row-3
-{
-	position: relative;
-}
-
-.row-3 > *
-{
-	display: inline-block;
-	width: 32%;
-}
-
-.center
-{
-	text-align: center;
+	line-height: 1.3em;
+	color: #202020;
 }
 
 p
 {
-	margin: 7px 0 0 10px;
+	margin: 5px 0 0 0;
 }
 
 a
 {
-	text-decoration: none;
 	color: inherit;
+	text-decoration: none;
 }
 
 a:hover
@@ -80,244 +29,203 @@ a:hover
 	color: #78BDD4;
 }
 
-h1, h2
+header
 {
-	margin: 0 0 10px 0;
-	color: black;
+	display: flex;
+	margin: 70px auto;
+	width: 700px;
 }
 
-h3
+header > *
 {
-	margin: 20px 0 0 0;
-	font-weight: normal;
+	margin: auto;
 }
 
-.main-title
+#my-head
 {
-	margin: 20px auto 65px auto;
+	background: #CCC;
+	border-radius: 50%;
+	width: 130px;
+	height: 130px;
 }
 
-@media (max-height: 1100px)
+.body
 {
-
-.main-title { margin-bottom: 40px; }
-h1, h2 { margin-bottom: 5px; }
-h3 { margin-top: 10px; }
-
+	display: grid;
+	grid-template-columns: auto 320px;
+	grid-column-gap: 30px;
+	width: 750px;
+	margin: 0 auto;
 }
 
-.spacer
+.bandeau
 {
-	margin: 30px auto 45px auto;
-	border: 0;
-	max-width: 500px;
-	height: 1px;
-	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+	margin: -20px 0 60px 0;
+	border: 10px solid #147393;
+	border-right: 0;
+	border-left: 0;
+	background: #4F9FBA;
+	box-shadow: 0px 0.5px 1px #999;
+	text-align: center;
+	font-size: 16px;
+	line-height: 28px;
+	color: #fff;
 }
 
-.skill-name
+.timeline
 {
-	display: inline-block;
-	min-width: 145px;
+	display: flex;
+	flex-direction: column;
 }
 
-.skill-info
+.epoch
 {
-	margin-left: 10px;
-	font-style: italic;
+	display: grid;
+	grid-template-columns: 15px auto;
+	grid-column-gap: 15px;
+	margin-bottom: 40px;
 }
 
-.skill-bar
+.epoch > .content
 {
-	position: relative;
-	margin: 4px auto;
-	width: 140px;
-	height: 18px;
-	background: #f1ecea;
-	border-radius: 4px;
-	overflow: hidden;
+	align-self: start;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-column-gap: 10px;
+	grid-row-gap: 30px;
 }
 
-.skill-bar > p
+.epoch > .content > p
 {
-	z-index: 1;
-	position: absolute;
-	margin: 0;
-	padding: 0 7px;
-	line-height: 18px;
-	color: white;
-}
-
-.skill-bar > div
-{
-	height: 100%;
-}
-
-.skill-bar-bigger
-{
-	margin: 5px auto;
-	width: 150px;
-	height: 20px;
-}
-
-.skill-bar-bigger > p
-{
-	line-height: 20px;
-}
-
-.left-column > p
-{
-	width: 500px;
 	text-align: justify;
 }
 
-.bg-blue { background: #4F9FBA; }
-.bg-yellow { background: #FFD267; }
-.bg-red { background: #FF7F67; }
-
-.bg-red-h { background: #FF6447; }
-.bg-yellow-h { background: #FFC947; }
-
-.fg-blue { color: #4f9eba; }
-.fg-yellow { color: #FFD267; }
-.fg-red { color: #FF7F67; }
-
-.fg-blue-hh { color: #147393; }
-
-@page
+.projects
 {
-	margin: 0;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-column-gap: 12px;
+	grid-row-gap: 20px;
 }
 
-	</style>
+.project
+{
+	border-top: 1px solid #e0e0e0;
+	padding: 5px;
+}
 
+.project > .name, .project > .info
+{
+	text-align: center;
+}
+
+.section-border.school { background: #4F9FBA; }
+.project.school { border-top-color: #4F9FBA; }
+.section-border.perso { background: #FFD267; }
+.project.perso { border-top-color: #FFD267; }
+.section-border.work { background: #FF7F67; }
+.project.work { border-top-color: #FF7F67; }
+
+	</style>
 </head>
 <body>
 
-	<div class="block row">
-		<div>
-			<h1>Jules AGUILLON</h1>
-			<p>13/09/1996</p>
-		</div>
-		<div>
-			<p><a href="mailto:juloo.dsi@gmail.com">juloo.dsi@gmail.com</a></p>
-			<p><a href="tel:+33667856614">(+33)6 67 85 66 14</a></p>
-			<p><a href="https://github.com/julow" target="_blank">github.com/Julow</a></p>
-		</div>
-	</div>
+	<header>
+		<img id="my-head" src="https://avatars3.githubusercontent.com/u/2310568" />
+		<h1>Jules AGUILLON</h1>
+		<p><a href="mailto:juloo.dsi@gmail.com">juloo.dsi@gmail.com</a><br />
+			<a href="tel:+33667856614">(+33)6 67 85 66 14</a><br />
+			<a href="https://github.com/julow" target="_blank">github.com/Julow</a></p>
+	</header>
 
-	<div class="block center">
-		<h1 class="main-title">Developer</h1>
-	</div>
+	<p class="bandeau">Software developer</p>
 
-	<div class="block">
-		<div class="block">
-			<p>I've started learning Computer Programming with passion four years ago at School 42.</p>
-			<p>I worked at <a href="https://www.ateme.com/" target="_blank">Ateme</a>, a video delivery expert, as a C++ developer for 6 months.</div>
-	</div>
-
-	<div class="block">
-		<h2 class="fg-blue-hh">Languages</h2>
-		<div class="row-3 center">
-			<div>
-				<div class="skill-bar skill-bar-bigger"><p>OCaml</p><div class="bg-red" style="width: 80%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>C++</p><div class="bg-red" style="width: 85%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>Python</p><div class="bg-red" style="width: 75%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>C</p><div class="bg-red" style="width: 85%;"></div></div>
+	<div class="body">
+		<section class="timeline">
+			<div class="epoch">
+				<div class="section-border school"></div>
+				<div class="content">
+					<p>2014</p>
+					<p>I passed the intense selection test and entered school 42, Paris, France.
+						I learned common algorithms, unix basics, object-oriented programming, GPU computing and more.
+						Projects were mainly coded in C and in small teams.
+						I've done a multitude of personal projects and met a lot of languages.</p>
+					<p>2016</p>
+					<p>I had the opportunity to discover the basics of OCaml.
+						It was love at first sight.
+						I immediately liked its paradigm and its concise and legible syntax.
+						Its many features have dazzled me.</p>
+				</div>
 			</div>
 
-			<!-- <div>
-				<div class="skill-bar skill-bar-bigger"><p>Ruby</p><div class="bg-red" style="width: 55%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>Java</p><div class="bg-red" style="width: 65%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>C#</p><div class="bg-red" style="width: 35%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>Javascript</p><div class="bg-red" style="width: 70%;"></div></div>
-			</div> -->
+			<div class="epoch">
+				<div class="section-border work"></div>
+				<div class="content">
+					<p>2017</p>
+					<p>I worked for 6 months at Ateme, a video delivery expert.
+						We were a medium-sized team (~8) and used the Agile method.
+						I've dealt with every aspect of the project.
+						The C/C++ codebase was very large and convoluted.</p>
+				</div>
+			</div>
 
-			<div>
-				<div class="skill-bar skill-bar-bigger"><p>Bash</p><div class="bg-red" style="width: 70%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>ASM</p><div class="bg-red" style="width: 55%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>French</p><div class="bg-red-h" style="width: 80%;"></div></div>
-				<div class="skill-bar skill-bar-bigger"><p>English</p><div class="bg-red-h" style="width: 70%;"></div></div>
+			<div class="epoch">
+				<div class="section-border perso"></div>
+				<div class="content">
+					<p>2018</p>
+					<p></p>
+				</div>
 			</div>
-		</div>
-	</div>
+		</section>
 
-	<div class="block">
-		<h2 class="fg-blue-hh">Interests</h2>
-		<h3>Graphics</h3>
-		<div class="row">
-			<div class="left-column">
-				<p>I really enjoy pushing <b>GPU capabilities</b> to its max, for instance through<br />
-				- <b>3D rendering</b> with OpenGL (<a href="https://github.com/Julow/scop">Scop</a>) or<br />
-				- <b>parallel computation</b> with OpenCL (<a href="https://github.com/Julow/particle_system">Particle System</a>).</p>
-				<p>And I'm not afraid of <b>math</b> (<a href="https://github.com/Julow/rtv1">RTv1</a>)!</p>
+		<section class="projects">
+			<div class="project school">
+				<p class="name"><a href="https://github.com/Julow/libft">libft</a></p>
+				<p class="info">C; 2014-2017</p>
+				<p class="desc">Full featured standard library.
+					Implements advanced data structures, parsers and a lot of utilities.
+					Used in all my school projects.</p>
 			</div>
-			<div>
-				<div class="skill-bar"><p>OpenGL</p><div class="bg-blue" style="width: 80%;"></div></div>
-				<div class="skill-bar"><p>OpenCL</p><div class="bg-blue" style="width: 80%;"></div></div>
-				<div class="skill-bar"><p>3D Math</p><div class="bg-yellow-h" style="width: 60%;"></div></div>
+			<div class="project perso">
+				<p class="name"><a href="https://github.com/Julow/Juloo-Sublime-Package">Juloo-Sublime-Package</a></p>
+				<p class="info">Python; 2014-2017</p>
+				<p class="desc">Collection of personnalisations for Sublime Text.</p>
 			</div>
-		</div>
-
-		<h3>Software architecture</h3>
-		<div class="row">
-			<div class="left-column">
-				<p>I often rack my brains on making <b>smart architecture design decisions</b> in order to create <b>modulable</b> and <b>reliable</b> code.
-					I'm constantly looking for learning new <b>design patterns</b> and applying them.</p>
-					<p>Also, I'm equally comfortable with both <b>functional</b> and imperative <b>object-oriented</b> programming.</p>
+			<div class="project perso">
+				<p class="name"><a href="https://github.com/Julow/makemake">makemake</a></p>
+				<p class="info">Python; 2015-2017</p>
+				<p class="desc">Makefile generator for C code.
+					Helps splitting code by "modules" and keeping the dependency graph clean.</p>
 			</div>
-			<div>
-				<div class="skill-bar"><p>Functional P.</p><div class="bg-yellow-h" style="width: 80%;"></div></div>
-				<div class="skill-bar"><p>Object-Oriented P.</p><div class="bg-yellow-h" style="width: 85%;"></div></div>
-				<div class="skill-bar"><p>Design patterns</p><div class="bg-yellow-h" style="width: 72%;"></div></div>
+			<div class="project school">
+				<p class="name"><a href="https://github.com/Julow/N-puzzle">N-puzzle</a></p>
+				<p class="info">C++, OCaml, Lua; 2015</p>
+				<p class="desc">Solve the N-puzzle.
+					We wrote our custom graphic system (libftui) in C++, scripted in Lua.
+					The solver is written in OCaml.</p>
 			</div>
-		</div>
-
-		<h3>Algorithm</h3>
-		<div class="row">
-			<div class="left-column">
-				<p>I'm familiar with <b>widely used data structures and algorithms</b> like red-black tree, avl, hash table or kd-tree.
-					Moreover, I learned about parsing, asynchronous mechanisms and more.</p>
-					<p>As part of a team, I implemented a complex <b>A*</b> algorithm with advanced heuristics (<a href="https://github.com/Julow/n-puzzle">N-Puzzle</a>).</p>
+			<div class="project perso">
+				<p class="name"><a href="https://github.com/Julow/env">env</a></p>
+				<p class="info">since 2014</p>
+				<p class="desc">Personnal configurations, tools and setup scripts</p>
 			</div>
-			<div>
-				<div class="skill-bar"><p>Data structures</p><div class="bg-yellow-h" style="width: 75%;"></div></div>
-				<div class="skill-bar"><p>Advanced algorithms</p><div class="bg-yellow-h" style="width: 60%;"></div></div>
-				<div class="skill-bar"><p>Parsing</p><div class="bg-yellow-h" style="width: 75%;"></div></div>
-				<div class="skill-bar"><p>Asynchronous</p><div class="bg-yellow-h" style="width: 65%;"></div></div>
+			<div class="project perso">
+				<p class="name"><a href="https://github.com/Julow/ocaml-java">ocaml-java</a></p>
+				<p class="info">OCaml; 2018</p>
+				<p class="desc">Interoperability between OCaml and Java.</p>
 			</div>
-		</div>
-
-		<h3>Low level/Unix</h3>
-		<div class="row">
-			<div class="left-column">
-				<p>I also like <b>low level</b> programming (<a href="https://github.com/Julow/libft_asm">libft_asm</a>) and working with <b>Unix</b> environment (<a href="https://github.com/Julow/ft_select">ft_select</a>, <a href="https://github.com/Julow/ft_script">ft_script</a>, <a href="https://github.com/Julow/ft_ls">ft_ls</a>) and <b>network</b> (<a href="https://github.com/Julow/ft_ping">ft_ping</a>, <a href="https://github.com/Julow/ft_p">ft_p</a>).<br />
-					To go one step further, I made a <b>posix shell</b> on my own (<a href="https://github.com/Julow/sh21">sh21</a>).</p>
-				<p>In the meantime, I practiced low level security (<a href="https://www.root-me.org/jaguillo42?inc=score&lang=en">RootMe challenges</a>, <a href="https://github.com/Julow/SnowCrash">SnowCrash</a>).</p>
+			<div class="project perso">
+				<p class="name"><a href="https://github.com/Julow/Unexpected-Keyboard">Unexpected Keyboard</a></p>
+				<p class="info">OCaml; 2018</p>
+				<p class="desc">Virtual keyboard for Android phones.
+					Its a rewrite of an old application I made in 2015.</p>
 			</div>
-			<div>
-				<div class="skill-bar"><p>Unix</p><div class="bg-blue" style="width: 65%;"></div></div>
-				<div class="skill-bar"><p>Gdb</p><div class="bg-blue" style="width: 75%;"></div></div>
-				<div class="skill-bar"><p>Network</p><div class="bg-yellow-h" style="width: 60%;"></div></div>
+			<div class="project perso">
+				<p class="name"><a href="https://github.com/Julow/rss_to_mail">rss_to_mail</a></p>
+				<p class="info">OCaml; 2018</p>
+				<p class="desc">Send a mail for new entries in a feed.</p>
 			</div>
-		</div>
-	</div>
-
-	<div class="block">
-		<h2 class="fg-blue-hh">More</h2>
-		<div class="row">
-			<div class="left-column">
-				<p>To maximize my <b>efficiency</b> and make my life <b>easier</b>, I often create tools or customize existing ones.</p>
-				<p>I gather a collection of <b>scripts</b> and <b>configurations</b> for my working environment (<a href="https://github.com/Julow/env">env</a>, <a href="https://github.com/Julow/Juloo-Sublime-Package">Juloo-Sublime-Package</a>) ;<br />
-					<b>Dev tools</b> for managing code dependencies and generating Makefiles or generating source code (<a href="https://github.com/Julow/makemake">makemake</a>, <a href="https://github.com/Julow/oh-my-generator">oh-my-generator</a>) ;<br />
-					<b>Daily life tools</b> (<a href="https://github.com/Julow/chrome-bookmarks">chrome-bookmarks</a>, <a href="https://github.com/Julow/Unexpected-Keyboard">Unexpected Keyboard</a>).</p>
-			</div>
-			<div>
-				<div class="skill-bar"><p>Sublime Text</p><div class="bg-blue" style="width: 80%;"></div></div>
-				<div class="skill-bar"><p>Android</p><div class="bg-yellow-h" style="width: 60%;"></div></div>
-				<div class="skill-bar"><p>Web</p><div class="bg-yellow-h" style="width: 50%;"></div></div>
-			</div>
-		</div>
+		</section>
 	</div>
 
 </body>
