@@ -2,12 +2,14 @@
 <html>
 <head>
 	<title>Jules AGUILLON</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" />
 	<style type="text/css">
 
 body
 {
 	margin: 0;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-family: "Open Sans", sans-serif;
 	font-size: 12px;
 	line-height: 1.3em;
 	color: #202020;
@@ -32,7 +34,7 @@ a:hover
 header
 {
 	display: flex;
-	margin: 70px auto;
+	margin: 70px auto 0 auto;
 	width: 700px;
 }
 
@@ -60,22 +62,19 @@ header > *
 
 .bandeau
 {
-	margin: -20px 0 60px 0;
-	border: 10px solid #147393;
-	border-right: 0;
-	border-left: 0;
-	background: #4F9FBA;
-	box-shadow: 0px 0.5px 1px #999;
+	margin: 30px auto 60px auto;
+	width: 220px;
+	border: 2px solid #147393;
 	text-align: center;
 	font-size: 16px;
-	line-height: 28px;
-	color: #fff;
+	line-height: 50px;
 }
 
 .timeline
 {
 	display: flex;
 	flex-direction: column;
+	font-size: 14px;
 }
 
 .epoch
@@ -91,7 +90,7 @@ header > *
 	align-self: start;
 	display: grid;
 	grid-template-columns: auto auto;
-	grid-column-gap: 10px;
+	grid-column-gap: 12px;
 	grid-row-gap: 30px;
 }
 
@@ -132,7 +131,7 @@ header > *
 
 	<header>
 		<img id="my-head" src="https://avatars3.githubusercontent.com/u/2310568" />
-		<h1>Jules AGUILLON</h1>
+		<div><h1>Jules AGUILLON</h1><p style="text-align:center;">Paris, France • 22 years old • French</p></div>
 		<p><a href="mailto:juloo.dsi@gmail.com">juloo.dsi@gmail.com</a><br />
 			<a href="tel:+33667856614">(+33)6 67 85 66 14</a><br />
 			<a href="https://github.com/julow" target="_blank">github.com/Julow</a></p>
@@ -146,14 +145,14 @@ header > *
 				<div class="section-border school"></div>
 				<div class="content">
 					<p>2014</p>
-					<p>I passed the intense selection test and entered school 42, Paris, France.
+					<p>I passed the intense selection test and entered <b>school 42</b>, Paris, France.
 						I learned common algorithms, unix basics, object-oriented programming, GPU computing and more.
-						Projects were mainly coded in C and in small teams.
+						Projects were mainly written in C and in small teams.
 						I've done a multitude of personal projects and met a lot of languages.</p>
 					<p>2016</p>
-					<p>I had the opportunity to discover the basics of OCaml.
+					<p>I had the opportunity to discover the basics of <b>OCaml</b> at school.
 						It was love at first sight.
-						I immediately liked its paradigm and its concise and legible syntax.
+						I immediately liked its paradigm and its concise syntax.
 						Its many features have dazzled me.</p>
 				</div>
 			</div>
@@ -162,7 +161,7 @@ header > *
 				<div class="section-border work"></div>
 				<div class="content">
 					<p>2017</p>
-					<p>I worked for 6 months at Ateme, a video delivery expert.
+					<p>I worked for 6 months at <b>Ateme</b>, a video delivery expert.
 						We were a medium-sized team (~8) and used the Agile method.
 						I've dealt with every aspect of the project.
 						The C/C++ codebase was very large and convoluted.</p>
@@ -173,7 +172,8 @@ header > *
 				<div class="section-border perso"></div>
 				<div class="content">
 					<p>2018</p>
-					<p></p>
+					<p>This year, <b>I decided to focus on building a deeper knowledge of OCaml and software design in general</b>.
+						I'm looking for a place where I could be surrounded by people who would help me be a better programmer.</p>
 				</div>
 			</div>
 		</section>
@@ -181,48 +181,48 @@ header > *
 		<section class="projects">
 			<div class="project school">
 				<p class="name"><a href="https://github.com/Julow/libft">libft</a></p>
-				<p class="info">C; 2014-2017</p>
+				<p class="info"><b>C</b>; 2014-2017</p>
 				<p class="desc">Full featured standard library.
 					Implements advanced data structures, parsers and a lot of utilities.
 					Used in all my school projects.</p>
 			</div>
 			<div class="project perso">
 				<p class="name"><a href="https://github.com/Julow/Juloo-Sublime-Package">Juloo-Sublime-Package</a></p>
-				<p class="info">Python; 2014-2017</p>
+				<p class="info"><b>Python</b>; 2014-2017</p>
 				<p class="desc">Collection of personnalisations for Sublime Text.</p>
 			</div>
 			<div class="project perso">
 				<p class="name"><a href="https://github.com/Julow/makemake">makemake</a></p>
-				<p class="info">Python; 2015-2017</p>
+				<p class="info"><b>Python</b>; 2015-2017</p>
 				<p class="desc">Makefile generator for C code.
 					Helps splitting code by "modules" and keeping the dependency graph clean.</p>
 			</div>
 			<div class="project school">
 				<p class="name"><a href="https://github.com/Julow/N-puzzle">N-puzzle</a></p>
-				<p class="info">C++, OCaml, Lua; 2015</p>
+				<p class="info"><b>C++, OCaml, Lua</b>; 2015</p>
 				<p class="desc">Solve the N-puzzle.
 					We wrote our custom graphic system (libftui) in C++, scripted in Lua.
 					The solver is written in OCaml.</p>
 			</div>
 			<div class="project perso">
 				<p class="name"><a href="https://github.com/Julow/env">env</a></p>
-				<p class="info">since 2014</p>
+				<p class="info"><b>Bash, Python, Haskell</b>; since 2014</p>
 				<p class="desc">Personnal configurations, tools and setup scripts</p>
 			</div>
 			<div class="project perso">
 				<p class="name"><a href="https://github.com/Julow/ocaml-java">ocaml-java</a></p>
-				<p class="info">OCaml; 2018</p>
+				<p class="info"><b>OCaml</b>; 2018</p>
 				<p class="desc">Interoperability between OCaml and Java.</p>
 			</div>
 			<div class="project perso">
 				<p class="name"><a href="https://github.com/Julow/Unexpected-Keyboard">Unexpected Keyboard</a></p>
-				<p class="info">OCaml; 2018</p>
+				<p class="info"><b>OCaml</b>; 2018</p>
 				<p class="desc">Virtual keyboard for Android phones.
 					Its a rewrite of an old application I made in 2015.</p>
 			</div>
 			<div class="project perso">
 				<p class="name"><a href="https://github.com/Julow/rss_to_mail">rss_to_mail</a></p>
-				<p class="info">OCaml; 2018</p>
+				<p class="info"><b>OCaml</b>; 2018</p>
 				<p class="desc">Send a mail for new entries in a feed.</p>
 			</div>
 		</section>
